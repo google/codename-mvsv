@@ -2,3 +2,8 @@ img.tile {
   position: absolute;
   border: 1px solid black;
 }
+
+img.magician {
+  position: absolute;
+  z-index: 1;
+}
