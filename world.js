@@ -12,7 +12,12 @@ World.prototype.draw = function(container) {
       this.tiles[i][j].draw(container, i, j);
     }
   }
+  for (var i = 0; i < this.actors.length; i++) {
+    this.actors[i].draw(container);
+  }
 }
+
+
 World.prototype.setUpWorldClickHandlers = function() {
  for (var i = 0; i < this.tiles.length; i++) {
     for (var j = 0; j < this.tiles[i].length; j++) {
