@@ -4,9 +4,9 @@ var world = new World();
 var container = document.getElementById('world');
 
 world.tiles = [
-    [new Empty(), new Empty(), new Empty()],
-    [new Empty(), new Empty(), new StoneTile()],
-    [new StoneTile(), new StoneTile(), new StoneTile()],
+    [new FreeTile(), new FreeTile(), new StoneTile()],
+    [new FreeTile(), new FreeTile(), new StoneTile()],
+    [new FreeTile(), new StoneTile(), new StoneTile()],
     ]
 
 
