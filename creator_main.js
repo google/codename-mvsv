@@ -27,5 +27,36 @@ World.prototype.tileClicked = function(x, y) {
 world_creator.setUpWorldCreatorClickHandlers();
 world_creator.world.setUpWorldClickHandlers();
 
+creator_container.appendChild(document.createElement("br"));
+var save_button = document.createElement("button");
+save_button.appendChild(document.createTextNode("Save"));
+creator_container.appendChild(save_button);
+save_button.addEventListener("click", function() {
+  var save = document.getElementById("save-text");
+  save.innerHTML = "";
+  save.appendChild(document.createTextNode(
+      world_creator.getWorldRepr()));
+  });
 
+var load_button = document.createElement("button");
+load_button.appendChild(document.createTextNode("Load"));
+creator_container.appendChild(load_button);
+load_button.addEventListener("click", function() {
+    var area = document.getElementById("world_text_area");
+    if (!area) {
+      area = document.createElement("textarea");
+      creator_container.appendChild(area);
+      area.id = "world_text_area";
+      return;
+    }
+    var str = area.value;
+    area.parentElement.removeChild(area);
+    var tiles = eval("(" + str + ")");
+    world_creator.world.tiles = tiles;
+    for (; container.firstChild;) {
+      container.removeChild(container.firstChild);
+    }
+    world_creator.drawWorld(container);
+    world_creator.world.setUpWorldClickHandlers();
+  });
 
