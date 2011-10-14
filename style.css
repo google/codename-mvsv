@@ -2,3 +2,7 @@ img.tile {
   position: absolute;
   border: 1px solid black;
 }
+
+img.creator_tile {
+  position: absolute;
+}
