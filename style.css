@@ -7,3 +7,13 @@ img.magician {
   position: absolute;
   z-index: 1;
 }
+
+div#world_creator {
+  position: absolute;
+  right: 50px;
+  top: 10px;
+}
+
+div#world_creator img.tile {
+  position: static;
+}
