@@ -3,22 +3,22 @@ function Player() {
 }
 
 Player.prototype.setUpEventHandlers = function() {
-  document.addEventListener('keyDown', this.keyDown.bind(this));
-  document.addEventListener('keyUp', this.keyDown.bind(this));
+  document.body.addEventListener('keydown', this.keyDown.bind(this));
+  document.body.addEventListener('keyup', this.keyUp.bind(this));
 };
 
 Player.prototype.tick = function(delta) {
   if (!this.actor) return;
   if (this.left) {
-    this.actor.accelerate(C.playerAcceleration / delta);
+    this.actor.accelerate(-C.playerAcceleration * delta);
   }
   if (this.right) {
-    this.actor.accelerate(-C.playerAcceleration / delta);
+    this.actor.accelerate(C.playerAcceleration * delta);
   }
 }
 
 Player.prototype.keyDown = function(e) {
-  switch (e.keyCode()) {
+  switch (e.keyCode) {
     case 37:
       this.left = true;
       break;
@@ -35,7 +35,7 @@ Player.prototype.keyDown = function(e) {
 };
 
 Player.prototype.keyUp = function(e) {
-  switch (e.keyCode()) {
+  switch (e.keyCode) {
     case 37:
       this.left = false;
       break;
