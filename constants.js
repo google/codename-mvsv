@@ -6,3 +6,6 @@ C.defaultDrag = 25;
 
 C.maxStep = 2;
 C.animStep = 0.25;
+
+C.width = 32
+C.height = 24
