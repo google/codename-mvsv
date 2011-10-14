@@ -17,5 +17,4 @@ player.setUpEventHandlers();
 world.player = player;
 
 world.draw(container);
-world.setUpWorldClickHandlers();
 world.loop();
