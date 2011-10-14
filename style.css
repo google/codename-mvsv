@@ -8,6 +8,10 @@ img.magician {
   z-index: 1;
 }
 
+body {
+  background-image: url("gfx/bg_1024_768_red.png");
+}
+
 div#world_creator {
   position: absolute;
   right: 50px;
