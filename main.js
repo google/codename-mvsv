@@ -7,4 +7,12 @@ world.tiles = [
     [new Empty(), new Empty()],
     ]
 
+
+var player = new Player();
+world.actors = [new Magician()]
+player.actor = world.actors[0];
+player.setUpEventHandlers();
+world.player = player;
+
 world.draw(container);
+world.loop();
