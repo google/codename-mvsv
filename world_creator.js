@@ -30,3 +30,16 @@ WorldCreator.prototype.setUpWorldCreatorClickHandlers = function() {
 WorldCreator.prototype.creatorTileClicked = function(x) {
   this.currentTile = this.tiles[x];
 } 
+
+WorldCreator.prototype.getWorldRepr = function() {
+  var rows = [];
+  for (var i = 0; i < this.world.tiles.length; i++) {
+    var cells = [];
+    for (var j = 0; j < this.world.tiles[i].length; j++ ) {
+      var cell = "new " + Utils.getObjectClass(this.world.tiles[i][j]) +"()";
+      cells.push(cell);
+    }
+    rows.push("[" + cells.join(", ") + "]");
+  }
+  return "[" + rows.join(", ") + "]";
+};
