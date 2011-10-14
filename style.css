@@ -3,6 +3,7 @@ img.tile {
   border: 1px solid black;
 }
 
-img.creator_tile {
+img.magician {
   position: absolute;
+  z-index: 1;
 }

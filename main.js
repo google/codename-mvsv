@@ -1,7 +1,6 @@
 
 var world = new World();
 
-var world_creator = new WorldCreator();
 var container = document.getElementById('world');
 
 world.tiles = [
@@ -9,7 +8,13 @@ world.tiles = [
     [new Empty(), new Empty()],
     ]
 
+
+var player = new Player();
+world.actors = [new Magician()]
+player.actor = world.actors[0];
+player.setUpEventHandlers();
+world.player = player;
+
 world.draw(container);
-creator_container = document.getElementById("world_creator")
-world_creator.draw(creator_container)
 world.setUpWorldClickHandlers();
+world.loop();
