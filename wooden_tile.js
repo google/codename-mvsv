@@ -5,10 +5,13 @@ function WoodenTile() {
   this.x = 0;
   this.y = 0;
   this.world = null;
+  this.fireNode = null
 }
 
 WoodenTile.prototype.fire = function() {
-  this.burning = true;
+  if (this.burned < WoodenTile.timeToBurn) {
+    this.burning = true;
+  }
 }
 
 WoodenTile.prototype.draw = function(container, x, y, world) {
@@ -30,7 +33,16 @@ WoodenTile.prototype.draw = function(container, x, y, world) {
 
 WoodenTile.prototype.tick = function(delta) {
   if (!this.burning) return;
+  if (!this.fireNode) {
+    var tmp = this.node;
+    Tile.draw(this, this.node.parentElement, this.x, this.y, 'flame1.png');
+    this.fireNode = this.node;
+    this.node = tmp;
+  }
   this.burned += delta;
+  this.fireNode.src = 'gfs/flame' + (Utils.getAnimationStep(
+      this.burned, WoodenTile.animStep, 5) + 1) + '.png';
+
   if (this.burned > WoodenTile.timeToSpread &&
       this.y > 1 && this.world[x][y - 1].fire) {
     this.world[x][y - 1].fire();
@@ -41,7 +53,12 @@ WoodenTile.prototype.tick = function(delta) {
     if (this.x + 1 < this.world.length && this.world[x + 1][y].fire)
       this.world[x + 1][y].fire();
   }
+  if (this.burned > WoodenTile.timeToBurn) {
+    this.burning = false;
+  }
 }
 
 WoodenTile.timeToSpreadUp = 2;
 WoodenTile.timeToSpreadSide = 8;
+WoodenTile.timeToBurn = 30;
+WoodenTile.animStep = 0.047;
