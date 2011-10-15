@@ -50,3 +50,7 @@ Scientist.prototype.jump = function() {
     this.actor.vspeed += C.jumpBoost;
   }
 };
+
+Scientist.prototype.specialAbility = function(which, world) {
+  alert('Not implemented.');
+};
