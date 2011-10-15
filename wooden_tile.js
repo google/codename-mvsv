@@ -1,4 +1,5 @@
 function WoodenTile() {
+  this.passible = false;
 }
 
 

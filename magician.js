@@ -7,8 +7,8 @@ Magician.prototype.accelerate = function(x) {
   this.actor.accelerate(x);
 };
 
-Magician.prototype.tick = function(delta) {
-  this.actor.tick(delta);
+Magician.prototype.tick = function(delta, world) {
+  this.actor.tick(delta, world);
   this.node.style.top = this.actor.y * C.size + 'px';
   this.node.style.left = this.actor.x * C.size + 'px';
   this.animTime += delta;

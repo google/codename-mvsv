@@ -25,7 +25,7 @@ World.prototype.loop = function() {
 
   this.player.tick(delta);
   for (var i = 0; i < this.actors.length; i++) {
-    this.actors[i].tick(delta);
+    this.actors[i].tick(delta, this);
   }
   setTimeout(this.loop.bind(this));
 };

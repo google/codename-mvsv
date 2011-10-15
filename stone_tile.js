@@ -1,4 +1,5 @@
 function StoneTile() {
+  this.passible = false;
 }
 
 StoneTile.prototype.draw = function(container, x, y) {
