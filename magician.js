@@ -30,4 +30,10 @@ Magician.prototype.draw = function(container) {
   this.node.src = 'gfx/magician_ltor1.png';
   this.node.className = 'magician';
   container.appendChild(this.node);
-}
+};
+
+Magician.prototype.jump = function() {
+  if (this.actor.vspeed == 0) {
+    this.actor.vspeed += C.jumpBoost;
+  }
+};

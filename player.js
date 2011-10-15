@@ -1,5 +1,10 @@
 function Player() {
   this.actor = null;
+
+  this.jumpReady = true;
+  this.jump = false;
+  this.left = false;
+  this.right = false;
 }
 
 Player.prototype.setUpEventHandlers = function() {
@@ -15,6 +20,11 @@ Player.prototype.tick = function(delta) {
   if (this.right) {
     this.actor.accelerate(C.playerAcceleration * delta);
   }
+  if (this.jump) {
+    this.actor.jump();
+    this.jump = false;
+    this.jumpReady = false;
+  }
 }
 
 Player.prototype.keyDown = function(e) {
@@ -23,7 +33,7 @@ Player.prototype.keyDown = function(e) {
       this.left = true;
       break;
     case 38: 
-      this.up = true;
+      if (this.jumpReady) this.jump = true;
       break;
     case 39:
       this.right = true;
@@ -40,7 +50,7 @@ Player.prototype.keyUp = function(e) {
       this.left = false;
       break;
     case 38: 
-      this.up = false;
+      this.jumpReady = true;
       break;
     case 39:
       this.right = false;
