@@ -1,5 +1,5 @@
 function FountainTile() {
-  this.passible = false;
+  this.passible = true;
   this.frost_ = new Frost();
   this.frozen = false;
   this.x = 0;
@@ -34,6 +34,7 @@ FountainTile.prototype.freeze = function() {
     return;
   }
   this.frozen = true;
+  this.passible = false;
   this.node.src = "gfx/fountain_frozen.png";
   this.frost_.startFreezing();
 }
@@ -47,6 +48,7 @@ FountainTile.prototype.melt = function() {
     return;
   }
   this.frozen = false;
+  this.passible = true;
   this.frost_.startMelting();
   this.node.src = "gfx/fountain.png";
 }

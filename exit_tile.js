@@ -1,5 +1,5 @@
 function ExitTile() {
-  this.passible = false;
+  this.passible = true;
   this.leftmost = false;
   this.rightmost = false;
   this.topmost = false;
