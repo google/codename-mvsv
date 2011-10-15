@@ -36,6 +36,8 @@ Scientist.prototype.tick = function(delta, world) {
   }
   if (this.fire_.finished && this.fire_.burning) {
     this.node.src = 'gfx/player_dead.png';
+    var die_scream = new Audio('sfx/dying_scream.mp3');
+    die_scream.play();
     world.fail();
   }
 };
