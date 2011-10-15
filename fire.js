@@ -2,7 +2,6 @@ function Fire() {
   this.fireNode = null;
   this.burning = false;
   this.burned = true;
-  this.fireNode = null;
   this.finished = false;
   this.useFlames = false;
 }
@@ -34,7 +33,7 @@ Fire.prototype.tick = function(delta, x, y, world) {
   var fileName = 'gfx/flame';
   if (this.useFlames) fileName += 's';
   fileName +=  (Utils.getAnimationStep(
-      this.burned, Fire.animStep, 5) + 1) + '.png';
+      this.burned, Fire.animStep, this.useFlames ? 11 : 5)) + 1) + '.png';
 
   this.fireNode.src = fileName;
   if (this.burned > Fire.timeToSpreadUp) {
