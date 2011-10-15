@@ -13,3 +13,6 @@ TerminalTile.prototype.draw = function(container, x, y, world) {
   name = "terminal1.png";
   Tile.draw(this, container, x, y, name);
 }
+
+TerminalTile.prototype.hack = function() {
+};

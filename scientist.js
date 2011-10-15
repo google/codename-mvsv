@@ -75,5 +75,17 @@ Scientist.prototype.jump = function() {
 };
 
 Scientist.prototype.specialAbility = function(which, world) {
-  alert('Not implemented.');
+  switch (which) {
+    case 0:
+      this.hackAbility();
+      break;
+  };
+};
+
+Scientist.prototype.hackAbility = function() {
+  if (!this.tile || !this.tile.hack) {
+    // TODO: add doesn't work sound!
+    return;
+  }
+  this.tile.hack();
 };
