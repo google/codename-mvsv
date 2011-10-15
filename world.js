@@ -86,7 +86,7 @@ World.prototype.fail = function() {
 World.prototype.removeActor = function(actor) {
   for (var i = 0; i < this.actors.length; i++) {
     if (this.actors[i] != actor) continue;
-    this.actors.splice(i, i + 1);
+    this.actors.splice(i, 1);
     if (actor.node) {
       actor.node.parentElement.removeChild(actor.node);
     }
