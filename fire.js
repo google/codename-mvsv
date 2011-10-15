@@ -4,6 +4,7 @@ function Fire() {
   this.burned = true;
   this.fireNode = null;
   this.finished = false;
+  this.useFlames = false;
 }
 
 Fire.prototype.start = function() {
@@ -21,15 +22,21 @@ Fire.prototype.stop = function() {
 Fire.prototype.tick = function(delta, x, y, world) {
   if (!this.burning) return;
   if (!this.fireNode) {
-    Tile.draw(this, world.container, x, y, 'flame1.png');
+    if (this.useFlames)
+      Tile.draw(this, world.container, x, y, 'flames1.png');
+    else
+      Tile.draw(this, world.container, x, y, 'flame1.png');
     this.fireNode = this.node;
     delete this.node;
   }
   this.burned += delta;
-  
-  this.fireNode.src = 'gfx/flame' + (Utils.getAnimationStep(
+ 
+  var fileName = 'gfx/flame';
+  if (this.useFlames) fileName += 's';
+  fileName +=  (Utils.getAnimationStep(
       this.burned, Fire.animStep, 5) + 1) + '.png';
 
+  this.fireNode.src = fileName;
   if (this.burned > Fire.timeToSpreadUp) {
     world.fire(x, y - 1);
   }

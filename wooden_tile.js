@@ -3,6 +3,7 @@ function WoodenTile() {
   this.y = 0;
   this.world = null;
   this.fire_ = new Fire(); 
+  this.fire_.useFlames = true;
   this.topmost = false;
 }
 
