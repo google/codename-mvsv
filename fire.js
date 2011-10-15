@@ -40,6 +40,8 @@ Fire.prototype.tick = function(delta, x, y, world) {
   if (this.burned > Fire.timeToBurn) {
     this.finished = true;
   }
+  this.fireNode.style.top = y * C.size + 'px';
+  this.fireNode.style.left = x * C.size + 'px';
 }
 
 Fire.timeToSpreadUp = 3;

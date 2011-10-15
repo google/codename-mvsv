@@ -36,6 +36,7 @@ World.prototype.fire = function(x, y) {
 }
 
 World.prototype.loop = function() {
+  if (this.shouldStop) return;
   var now = new Date().getTime() / 1000.0;
   var delta = now - this.lastLoop;
   this.lastLoop = now;
@@ -57,3 +58,11 @@ World.prototype.loop = function() {
   }
   setTimeout(this.loop.bind(this));
 };
+
+World.prototype.fail = function() {
+  this.shouldStop = true;
+  var loseDiv = document.createElement('div');
+  loseDiv.className = 'lose';
+  loseDiv.innerHTML = "He's dead Jim!";
+  document.body.appendChild(loseDiv);
+}
