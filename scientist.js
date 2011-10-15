@@ -19,7 +19,7 @@ Scientist.prototype.tick = function(delta, world) {
     } else {
       src += 'rtol';
     }
-    src += Math.floor(this.actor.animTime % (C.animStep * 2) / C.animStep) + 1;
+    src += Utils.getAnimationStep(this.actor.animTime, C.animStep, 2) + 1;
     src += '.png';
     this.node.src = src;
   }

@@ -11,3 +11,6 @@ Utils.getObjectClass = function(obj) {
   return undefined;
 }
 
+Utils.getAnimationStep = function(time, step, frames) {
+  return Math.floor(time % (step * frames) / step);
+}
