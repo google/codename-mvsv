@@ -3,6 +3,7 @@ function Scientist() {
   this.animTime = 0;
 
   this.fire_ = new Fire();
+  this.jumpSound = new Audio('sfx/jump.mp3');
 }
 
 Scientist.prototype.touch = function(x, y) {
@@ -57,6 +58,7 @@ Scientist.prototype.draw = function(container) {
 Scientist.prototype.jump = function() {
   if (this.actor.vspeed == 0) {
     this.actor.vspeed += C.jumpBoost;
+    this.jumpSound.play();
   }
 };
 
