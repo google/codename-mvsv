@@ -6,7 +6,7 @@ C.defaultDrag = 25;
 C.gravity = 50;
 C.jumpBoost = -30;
 
-C.maxStep = 2;
+C.maxStep = 0.5;
 C.animStep = 0.25;
 
 C.width = 32

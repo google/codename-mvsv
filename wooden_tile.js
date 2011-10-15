@@ -40,21 +40,21 @@ WoodenTile.prototype.tick = function(delta) {
     this.node = tmp;
   }
   this.burned += delta;
-  this.fireNode.src = 'gfs/flame' + (Utils.getAnimationStep(
+  this.fireNode.src = 'gfx/flame' + (Utils.getAnimationStep(
       this.burned, WoodenTile.animStep, 5) + 1) + '.png';
 
-  if (this.burned > WoodenTile.timeToSpread &&
-      this.y > 1 && this.world[x][y - 1].fire) {
-    this.world[x][y - 1].fire();
+  if (this.burned > WoodenTile.timeToSpreadUp) {
+    this.world.fire(this.x, this.y - 1);
   }
   if (this.burned > WoodenTile.timeToSpreadSide) {
-    if (this.x > 1 && this.world[x - 1][y].fire)
-      this.world[x - 1][y].fire();
-    if (this.x + 1 < this.world.length && this.world[x + 1][y].fire)
-      this.world[x + 1][y].fire();
+    this.world.fire(this.x + 1, this.y);
+    this.world.fire(this.x - 1, this.y);
   }
   if (this.burned > WoodenTile.timeToBurn) {
     this.burning = false;
+    this.passible = true;
+    this.fireNode.parentElement.removeChild(this.fireNode);
+    this.node.src = 'gfx/bg_gray.png';
   }
 }
 

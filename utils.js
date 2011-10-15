@@ -23,4 +23,5 @@ Utils.setUpPlayer = function(player, world) {
   player.setUpEventHandlers();
 
   world.player = player;
+  player.world = world;
 };
