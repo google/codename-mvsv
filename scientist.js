@@ -18,12 +18,23 @@ Scientist.prototype.fire = function() {
   this.fire_.start();
 }
 
+Scientist.prototype.destroy = function() {
+  this.die();
+}
+
 Scientist.prototype.water = function() {
   if (this.fire_.burning) {
     this.fire_.stop();
     this.fire_ = new Fire();
   }
 }
+
+Scientist.prototype.die = function() {
+    this.node.src = 'gfx/player_dead.png';
+    var die_scream = new Audio('sfx/dying_scream.mp3');
+    die_scream.play();
+    world.fail();
+};
 
 Scientist.prototype.accelerate = function(x) {
   this.actor.accelerate(x);
@@ -47,10 +58,7 @@ Scientist.prototype.tick = function(delta, world) {
     this.node.src = src;
   }
   if (this.fire_.finished && this.fire_.burning) {
-    this.node.src = 'gfx/player_dead.png';
-    var die_scream = new Audio('sfx/dying_scream.mp3');
-    die_scream.play();
-    world.fail();
+    this.die();
   }
   this.tile = world.tiles[Math.round(this.actor.x)][Math.round(this.actor.y)];
   if (this.tile.actorAction) {

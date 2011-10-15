@@ -33,16 +33,19 @@ Dynamite.prototype.tick = function(delta, world) {
       this.beepSound.pause();
     }
     this.node.src = 'gfx/explosion' +
-       (Utils.getAnimationStep(this.animTime, Dynamite.explosionAnimStep, 8)
+       (Utils.getAnimationStep(this.animTime - this.detonationTime, Dynamite.explosionAnimStep, 8)
        + 1) + '.png';
     if (this.explosionSound.ended) {
       world.removeActor(this);
+      world.destroy(this.actor.x, this.actor.y);
     }
   }
 }
 
-Dynamite.explosionAnimStep = 0.49;
+Dynamite.explosionAnimStep = 0.43;
 
 Dynamite.prototype.draw = function(container) {
   Tile.draw(this, container, this.actor.x, this.actor.y, 'dynamite.png');
 };
+
+
