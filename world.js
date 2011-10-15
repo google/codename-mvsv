@@ -36,9 +36,6 @@ World.prototype.fire = function(x, y) {
 }
 
 World.prototype.freeze = function(x, y) {
-  if (this.tiles[x][y].frozen) {
-    return;
-  }
   for (var i = Math.floor(x); i <= Math.ceil(x); i++) 
     for (var j = Math.floor(y); j <= Math.ceil(y); j++)
       if (i > 0 && i < this.tiles.length &&
@@ -55,9 +52,6 @@ World.prototype.freeze = function(x, y) {
 }
 
 World.prototype.melt = function(x, y) {
-  if (!this.tiles[x][y].frozen) {
-    return;
-  }
   for (var i = Math.floor(x); i <= Math.ceil(x); i++) 
     for (var j = Math.floor(y); j <= Math.ceil(y); j++)
       if (i > 0 && i < this.tiles.length &&
