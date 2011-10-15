@@ -99,6 +99,15 @@ World.prototype.fail = function() {
   document.body.appendChild(loseDiv);
 };
 
+World.prototype.win = function() {
+  this.shouldStop = true;
+  var winDiv = document.createElement('div');
+  winDiv.className = 'win';
+  winDiv.innerHTML = "The Science of Magic <br> and <br>The Magic of Science<br> " +
+      "congratulate <br> you for your achievement!";
+  document.body.appendChild(winDiv);
+}
+
 World.prototype.removeActor = function(actor) {
   for (var i = 0; i < this.actors.length; i++) {
     if (this.actors[i] != actor) continue;
@@ -108,4 +117,3 @@ World.prototype.removeActor = function(actor) {
     }
   }  
 };
-
