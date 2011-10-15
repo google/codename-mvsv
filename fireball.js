@@ -21,7 +21,7 @@ FireBall.prototype.water = function() {
   this.sizzlingSound.play();
 };
 
-FireBall.prototype.tick = function(delta) {
+FireBall.prototype.tick = function(delta, world) {
   this.animTime += delta;
   this.actor.tick(delta, world);
   this.node.style.top = this.actor.y * C.size + 'px';
@@ -39,7 +39,7 @@ FireBall.prototype.tick = function(delta) {
 };
 
 FireBall.prototype.draw = function(container) {
-  Tile.draw(this, container, this.x, this.y, 'firestream1.png');
+  Tile.draw(this, container, this.actor.x, this.actor.y, 'firestream1.png');
 };
 
 FireBall.animStep = 0.037;

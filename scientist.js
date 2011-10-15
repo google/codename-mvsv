@@ -3,6 +3,7 @@ function Scientist() {
   this.actor.width = 0.5;
   this.actor.height = 0.9;
   this.animTime = 0;
+  this.dynamite = 1;
 
   this.fire_ = new Fire();
   this.jumpSound = new Audio('sfx/jump.mp3');
@@ -81,6 +82,9 @@ Scientist.prototype.specialAbility = function(which, world) {
     case 0:
       this.hackAbility();
       break;
+    case 1:
+      this.demolitionAbility();
+      break;
   };
 };
 
@@ -92,4 +96,15 @@ Scientist.prototype.hackAbility = function() {
   var die_scream = new Audio('sfx/activate_terminal.mp3');
   die_scream.play();
   this.tile.hack();
+};
+
+Scientist.prototype.demolitionAbility = function() {
+  if (!this.dynamite || this.dynamite < 1) return;
+  this.dynamite--;
+  var dynamite = new Dynamite();
+  dynamite.actor.x = this.actor.x;
+  dynamite.actor.y = this.actor.y;
+  dynamite.speed = this.speed;
+  dynamite.draw(this.world.container, this.actor.x, this.actor.y, this.world);
+  this.world.actors.push(dynamite);
 };
