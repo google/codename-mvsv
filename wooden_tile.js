@@ -35,13 +35,13 @@ WoodenTile.prototype.tick = function(delta) {
   if (!this.burning) return;
   if (!this.fireNode) {
     var tmp = this.node;
-    Tile.draw(this, this.node.parentElement, this.x, this.y, 'flame1.png');
+    Tile.draw(this, this.node.parentElement, this.x, this.y, 'flames1.png');
     this.fireNode = this.node;
     this.node = tmp;
   }
   this.burned += delta;
-  this.fireNode.src = 'gfx/flame' + (Utils.getAnimationStep(
-      this.burned, WoodenTile.animStep, 5) + 1) + '.png';
+  this.fireNode.src = 'gfx/flames' + (Utils.getAnimationStep(
+      this.burned, WoodenTile.animStep, 11) + 1) + '.png';
 
   if (this.burned > WoodenTile.timeToSpreadUp) {
     this.world.fire(this.x, this.y - 1);
