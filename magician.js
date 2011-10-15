@@ -15,7 +15,7 @@ Magician.prototype.fire = function() {
 }
 
 Magician.prototype.water = function() {
-  if (this.fire_.burning()) {
+  if (this.fire_.burning) {
     this.fire_.stop();
     this.fire_ = new Fire();
   }
