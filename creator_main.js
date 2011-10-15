@@ -47,14 +47,16 @@ World.prototype.tileClicked = function(x, y, e) {
     } else {
       if (Utils.getObjectClass(this.tiles[x][y]) !=
           Utils.getObjectClass(world_creator.currentTile)) {
-        this.tiles[x][y] = world_creator.currentTile;
+	if (this.tiles[x][y].node) {
+	  this.tiles[x][y].node.parentElement.removeChild(this.tiles[x][y].node);
+	}
+        this.tiles[x][y] = eval("new " + Utils.getObjectClass(world_creator.currentTile) + "()");
         this.tiles[x][y].draw(container, x, y, this);
+	this.tiles[x][y].node.addEventListener("mousedown", this.tileClicked.bind(this, x, y)) 
+	this.tiles[x][y].node.addEventListener("mouseover", this.tileOver.bind(this, x, y))
       }
     }
   }
-/*  for (var i = 0; i < this.actors.length; i++) {
-    this.actors[i].draw(container);
-  }*/
 } 
 
 world_creator.setUpWorldCreatorClickHandlers();
