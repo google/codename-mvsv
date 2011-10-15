@@ -117,3 +117,26 @@ World.prototype.removeActor = function(actor) {
     }
   }  
 };
+
+World.prototype.replaceTile = function(x, y, newTile) {
+  var container = this.tiles[x][y].node.parentElement;
+  container.removeChild(this.tiles[x][y].node);
+  this.tiles[x][y] = newTile;
+  newTile.draw(container, x, y, this);
+};
+
+World.prototype.destroy = function(x, y) {
+  for (var i = Math.max(0, Math.floor(x - C.dynamiteRadius));
+       i <= Math.min(this.tiles.length - 1, Math.floor(x + C.dynamiteRadius)); i++)
+    for (var j = Math.max(0, Math.floor(y - C.dynamiteRadius));
+         j <= Math.min(this.tiles[i].length - 1,
+                       Math.floor(y + C.dynamiteRadius)); j++) {
+      var newTile = new FreeTile();
+      this.replaceTile(i, j, newTile);
+      for (var k = 0; k < this.actors.length; k++) {
+        if (this.actors[k].touch(i, j) && this.actors[k].destroy) {
+          this.actors[k].destroy();
+        }
+      }
+    }
+};

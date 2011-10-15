@@ -23,6 +23,16 @@ Magician.prototype.water = function() {
     this.fire_ = new Fire();
   }
 }
+Magician.prototype.destroy = function() {
+  this.die();
+}
+
+Magician.prototype.die = function() {
+    this.node.src = 'gfx/player_dead.png';
+    var die_scream = new Audio('sfx/dying_scream.mp3');
+    die_scream.play();
+    world.fail();
+};
 
 Magician.prototype.accelerate = function(x) {
   this.actor.accelerate(x);
@@ -46,10 +56,7 @@ Magician.prototype.tick = function(delta, world) {
     this.node.src = src;
   }
   if (this.fire_.finished && this.fire_.burning) {
-    this.node.src = 'gfx/player_dead.png';
-    var die_scream = new Audio('sfx/dying_scream.mp3');
-    die_scream.play();
-    world.fail();
+    this.die();
   }
   this.tile = world.tiles[Math.round(this.actor.x)][Math.round(this.actor.y)];
   if (this.tile.actorAction) {

@@ -8,6 +8,7 @@ C.jumpBoost = -14;
 
 C.maxStep = 0.5;
 C.animStep = 0.25;
+C.dynamiteRadius = 2;
 
 C.width = 32
 C.height = 24
