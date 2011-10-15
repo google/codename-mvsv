@@ -3,6 +3,14 @@ function Magician() {
   this.animTime = 0;
 }
 
+Magician.prototype.touch = function(x, y) {
+  return this.actor.touch(x, y);
+}
+
+Magician.prototype.fire = function() {
+  alert("He's dead Jim!");
+}
+
 Magician.prototype.accelerate = function(x) {
   this.actor.accelerate(x);
 };
