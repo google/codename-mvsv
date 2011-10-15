@@ -1,7 +1,7 @@
 function Fire() {
   this.fireNode = null;
   this.burning = false;
-  this.burned = true;
+  this.burned = 0;
   this.finished = false;
   this.useFlames = false;
 }
@@ -42,6 +42,7 @@ Fire.prototype.tick = function(delta, x, y, world) {
   if (this.burned > Fire.timeToSpreadSide) {
     world.fire(x + 1, y);
     world.fire(x - 1, y);
+    
   }
   if (this.burned > Fire.timeToBurn) {
     this.finished = true;
