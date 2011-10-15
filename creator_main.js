@@ -26,6 +26,9 @@ World.prototype.tileClicked = function(x, y) {
 	world_creator.magician.actor.y = y;
 	world_creator.magician.draw(container);
       }else {
+	if (!world_creator.scientist) {
+	  world_creator.scientist = new Scientist();
+	}
 	world_creator.scientist.actor.x = x;
 	world_creator.scientist.actor.y = y;
 	world_creator.scientist.draw(container);
