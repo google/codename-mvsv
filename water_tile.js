@@ -58,16 +58,16 @@ WaterTile.prototype.draw = function(container, x, y, world) {
   }
   this.leftmost= false;
   this.rightmost = false;
-  if (x == 0 || (Utils.getObjectClass(world.tiles[x-1][y]) != "WaterTile" && Utils.getObjectClass(world.tiles[x-1][y]) != "FrozenWaterTile")) {
+  if (x == 0 || Utils.getObjectClass(world.tiles[x-1][y]) != "WaterTile") {
     this.leftmost = true;
   }
-  if (x + 1 == world.tiles.length || (Utils.getObjectClass(world.tiles[x+1][y]) != "WaterTile" && Utils.getObjectClass(world.tiles[x+1][y]) != "FrozenWaterTile")) {
+  if (x + 1 == world.tiles.length || Utils.getObjectClass(world.tiles[x+1][y]) != "WaterTile") {
     this.rightmost = true;
   }
   
 
   this.above_fountain = false;
-  if (y + 1 != world.tiles[0].length && (Utils.getObjectClass(world.tiles[x][y + 1]) == "FountainTile"  || Utils.getObjectClass(world.tiles[x][y + 1]) == "FrozenFountainTile") ) {
+  if (y + 1 != world.tiles[0].length && Utils.getObjectClass(world.tiles[x][y + 1]) == "FountainTile") {
     this.above_fountain = true;
   }
 

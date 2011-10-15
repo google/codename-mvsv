@@ -113,6 +113,6 @@ Scientist.prototype.demolitionAbility = function() {
   dynamite.actor.x = this.actor.x;
   dynamite.actor.y = this.actor.y;
   dynamite.speed = this.speed;
-  dynamite.draw(this.world.container, this.actor.x, this.actor.y, this.world);
+  dynamite.draw(this.world.container, dynamite.actor.x, dynamite.actor.y, this.world);
   this.world.actors.push(dynamite);
 };

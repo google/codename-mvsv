@@ -24,9 +24,9 @@ for(var i = 0;i<world.tiles.length;++i) {
 }
 var player = new Player();
 Utils.setUpPlayer(player, world);
-player.magician.actor.y = 13;
+player.magician.actor.y = 14;
 player.magician.actor.x = 20;
-player.scientist.actor.y = 13;
+player.scientist.actor.y = 14;
 world.draw(container);
 world.loop();
 C.jumpBoost = -14;
