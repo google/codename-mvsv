@@ -49,21 +49,17 @@ Actor.prototype.tick = function(delta, world) {
   if (Math.floor(this.x + this.width) >= world.tiles.length) {
     this.x = world.tiles.length - this.width;
     this.speed = 0;
-    colided = true;
   }
   if (this.x < 0) {
     this.x = 0;
-    colided = true;
     this.speed = 0;
   }
   if (Math.floor(this.y + this.height) >= world.tiles[0].length) {
-    this.y = world.tiles[0].length - this.height;;
-    colided = true;
+    this.y = world.tiles[0].length - this.height;
     this.vspeed = 0;
   }
   if (this.y < 0) {
     this.y = 0;
-    colided = true;
     this.vspeed = 0;
   }
 
