@@ -35,6 +35,22 @@ World.prototype.fire = function(x, y) {
   }
 }
 
+World.prototype.freeze = function(x, y) {
+  for (var i = Math.floor(x); i <= Math.ceil(x); i++) 
+    for (var j = Math.floor(y); j <= Math.ceil(y); j++)
+      if (i > 0 && i < this.tiles.length &&
+          j > 0 && j < this.tiles[i].length &&
+          this.tiles[i][j].freeze) {
+        this.tiles[i][j].freeze();
+      }
+
+  for (var i = 0; i < this.actors.length; i++) {
+    if (this.actors[i].touch(x, y) && this.actors[i].freeze) {
+      this.actors[i].freeze();
+    }
+  }
+}
+
 World.prototype.loop = function() {
   if (this.shouldStop) return;
   var now = new Date().getTime() / 1000.0;

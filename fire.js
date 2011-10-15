@@ -2,7 +2,6 @@ function Fire() {
   this.fireNode = null;
   this.burning = false;
   this.burned = true;
-  this.fireNode = null;
   this.finished = false;
   this.useFlames = false;
 }
