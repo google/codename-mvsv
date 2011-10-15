@@ -2,7 +2,8 @@
 var world_creator = new WorldCreator();
 creator_container = document.getElementById("world_creator")
 container = document.getElementById("world")
-world_creator.tiles = [new WoodenTile(), new StoneTile(), new FreeTile()]
+world_creator.tiles = [new WoodenTile(), new StoneTile(), new GroundTile(), new FreeTile()]
+world_creator.players = [new MagicianTile(), new ScientistTile()];
 world_creator.draw(creator_container);
 world_creator.drawWorld(container);
 
@@ -16,8 +17,24 @@ World.prototype.setUpWorldClickHandlers = function() {
 
 World.prototype.tileClicked = function(x, y) {
   if (world_creator.currentTile) {
-    this.tiles[x][y] = world_creator.currentTile;
-    this.tiles[x][y].draw(container, x, y);
+    if ( Utils.getObjectClass(world_creator.currentTile) == "String") {
+      if (world_creator.currentTile == "magician") {
+	if (!world_creator.magician) {
+	  world_creator.magician = new Magician();
+	}
+	world_creator.magician.actor.x = x;
+	world_creator.magician.actor.y = y;
+	world_creator.magician.draw(container);
+      }else {
+	world_creator.scientist.actor.x = x;
+	world_creator.scientist.actor.y = y;
+	world_creator.scientist.draw(container);
+      }
+      
+    } else {
+      this.tiles[x][y] = world_creator.currentTile;
+      this.tiles[x][y].draw(container, x, y, this);
+    }
   }
   for (var i = 0; i < this.actors.length; i++) {
     this.actors[i].draw(container);
