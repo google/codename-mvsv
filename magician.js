@@ -2,6 +2,7 @@ function Magician() {
   this.actor = new Actor();
   this.animTime = 0;
   this.fire_ = new Fire();
+  this.jumpSound = new Audio('sfx/jump.mp3');
 }
 
 Magician.prototype.touch = function(x, y) {
@@ -35,6 +36,8 @@ Magician.prototype.tick = function(delta, world) {
   }
   if (this.fire_.finished && this.fire_.burning) {
     this.node.src = 'gfx/player_dead.png';
+    var die_scream = new Audio('sfx/dying_scream.mp3');
+    die_scream.play();
     world.fail();
   }
 };
@@ -54,6 +57,7 @@ Magician.prototype.draw = function(container) {
 Magician.prototype.jump = function() {
   if (this.actor.vspeed == 0) {
     this.actor.vspeed += C.jumpBoost;
+    this.jumpSound.play();
   }
 };
 
