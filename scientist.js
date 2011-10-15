@@ -26,7 +26,12 @@ Scientist.prototype.tick = function(delta, world) {
 };
 
 Scientist.prototype.draw = function(container) {
+    if (this.node) {
+    this.node.parentElement.removeChild(this.node);
+  }
   this.node = document.createElement('img');
+  this.node.style.top = this.actor.y * C.size + 'px';
+  this.node.style.left = this.actor.x * C.size + 'px';
   this.node.src = 'gfx/scientist_ltor1.png';
   this.node.className = 'magician';
   container.appendChild(this.node);
