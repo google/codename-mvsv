@@ -30,5 +30,12 @@ World.prototype.loop = function() {
   for (var i = 0; i < this.actors.length; i++) {
     this.actors[i].tick(delta, this);
   }
+  for (var i = 0; i < this.tiles.length; i++) {
+    for (var j = 0; j < this.tiles[i].length; j++) {
+      if (this.tiles[i][j].tick) {
+        this.tiles[i][j].tick(delta);
+      }
+    }
+  }
   setTimeout(this.loop.bind(this));
 };
