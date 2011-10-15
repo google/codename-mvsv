@@ -3,6 +3,7 @@ function Scientist() {
   this.animTime = 0;
 
   this.fire_ = new Fire();
+  this.jumpSound = new Audio('sfx/jump.mp3');
 }
 
 Scientist.prototype.touch = function(x, y) {
@@ -36,6 +37,8 @@ Scientist.prototype.tick = function(delta, world) {
   }
   if (this.fire_.finished && this.fire_.burning) {
     this.node.src = 'gfx/player_dead.png';
+    var die_scream = new Audio('sfx/dying_scream.mp3');
+    die_scream.play();
     world.fail();
   }
 };
@@ -55,6 +58,7 @@ Scientist.prototype.draw = function(container) {
 Scientist.prototype.jump = function() {
   if (this.actor.vspeed == 0) {
     this.actor.vspeed += C.jumpBoost;
+    this.jumpSound.play();
   }
 };
 
