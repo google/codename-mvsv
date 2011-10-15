@@ -1,5 +1,5 @@
 function TerminalTile() {
-  this.passible = false;
+  this.passible = true;
   this.time = Math.random();
 }
 
