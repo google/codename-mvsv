@@ -1,6 +1,9 @@
 function Magician() {
   this.actor = new Actor();
   this.animTime = 0;
+
+  this.burning = false;
+  this.burned = 0;
 }
 
 Magician.prototype.touch = function(x, y) {
@@ -8,7 +11,7 @@ Magician.prototype.touch = function(x, y) {
 }
 
 Magician.prototype.fire = function() {
-  alert("He's dead Jim!");
+  this.burning = true;
 }
 
 Magician.prototype.accelerate = function(x) {

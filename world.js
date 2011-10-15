@@ -4,9 +4,11 @@ function World() {
   this.actors = [];
   this.player = null;
   this.lastLoop = 0;
+  this.container = null;
 };
 
 World.prototype.draw = function(container) {
+  this.container = container;
   for (var i = 0; i < this.tiles.length; i++) {
     for (var j = 0; j < this.tiles[i].length; j++) {
       this.tiles[i][j].draw(container, i, j, this);
@@ -18,11 +20,14 @@ World.prototype.draw = function(container) {
 }
 
 World.prototype.fire = function(x, y) {
-  if (x > 0 && x < this.tiles.length &&
-      y > 0 && y < this.tiles[x].length &&
-      this.tiles[x][y].fire) {
-    this.tiles[x][y].fire();
-  }
+  for (var i = Math.floor(x); i <= Math.ceil(x); i++) 
+    for (var j = Math.floor(y); j <= Math.ceil(y); j++)
+      if (i > 0 && i < this.tiles.length &&
+          j > 0 && j < this.tiles[i].length &&
+          this.tiles[i][j].fire) {
+        this.tiles[i][j].fire();
+      }
+
   for (var i = 0; i < this.actors.length; i++) {
     if (this.actors[i].touch(x, y) && this.actors[i].fire) {
       this.actors[i].fire();
