@@ -34,7 +34,7 @@ Scientist.prototype.tick = function(delta, world) {
     src += '.png';
     this.node.src = src;
   }
-  if (this.fire_.finished && this.fire_.burning()) {
+  if (this.fire_.finished && this.fire_.burning) {
     this.node.src = 'gfx/player_dead.png';
     world.fail();
   }
