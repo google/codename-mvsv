@@ -36,7 +36,8 @@ WorldCreator.prototype.drawWorld = function(container) {
 WorldCreator.prototype.setUpWorldCreatorClickHandlers = function() {
   this.world.draw(container);
  for (var i = 0; i < this.tiles.length; i++) {
-      this.tiles[i].node.addEventListener("click", this.creatorTileClicked.bind(this, i)) 
+   this.tiles[i].node.addEventListener("click", this.creatorTileClicked.bind(this, i)) 
+
  }
  for (var i = 0; i < this.players.length; ++i) {
    this.players[i].node.addEventListener("click", this.creatorPlayerClicked.bind(this, i))

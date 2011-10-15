@@ -10,12 +10,22 @@ world_creator.drawWorld(container);
 World.prototype.setUpWorldClickHandlers = function() {
  for (var i = 0; i < this.tiles.length; i++) {
     for (var j = 0; j < this.tiles[i].length; j++) {
-      this.tiles[i][j].node.addEventListener("click", this.tileClicked.bind(this, i, j)) 
+      this.tiles[i][j].node.addEventListener("mousedown", this.tileClicked.bind(this, i, j)) 
+      this.tiles[i][j].node.addEventListener("mouseover", this.tileOver.bind(this, i, j))
     }
   }
 }
 
-World.prototype.tileClicked = function(x, y) {
+World.prototype.tileOver = function(x, y, e) {  
+  if (e.which != 0) {
+    this.tileClicked(x, y, e);
+  }
+}
+
+World.prototype.tileClicked = function(x, y, e) {
+  if (e.stopPropagation) e.stopPropagation();
+  if (e.cancelBubble != null) e.cancelBubble = true;
+  if (e.preventDefault) e.preventDefault();
   if (world_creator.currentTile) {
     if ( Utils.getObjectClass(world_creator.currentTile) == "String") {
       if (world_creator.currentTile == "magician") {
@@ -35,13 +45,16 @@ World.prototype.tileClicked = function(x, y) {
       }
       
     } else {
-      this.tiles[x][y] = world_creator.currentTile;
-      this.tiles[x][y].draw(container, x, y, this);
+      if (Utils.getObjectClass(this.tiles[x][y]) !=
+          Utils.getObjectClass(world_creator.currentTile)) {
+        this.tiles[x][y] = world_creator.currentTile;
+        this.tiles[x][y].draw(container, x, y, this);
+      }
     }
   }
-  for (var i = 0; i < this.actors.length; i++) {
+/*  for (var i = 0; i < this.actors.length; i++) {
     this.actors[i].draw(container);
-  }
+  }*/
 } 
 
 world_creator.setUpWorldCreatorClickHandlers();
