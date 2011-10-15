@@ -1,20 +1,12 @@
+var includes = ['constants.js', 'world.js', 'world_creator.js', 'tile.js', 'utils.js',
+                'wooden_tile.js', 'ground_tile.js', 'terminal_tile.js',
+                'stone_tile.js', 'free_tile.js', 'magician.js',
+                'scientist.js', 'player.js', 'actor.js'];
 
-var world = new World();
-
-var container = document.getElementById('world');
-
-world.tiles = [
-    [new FreeTile(), new FreeTile(), new FreeTile()],
-    [new FreeTile(), new FreeTile(), new StoneTile()],
-    [new FreeTile(), new StoneTile(), new StoneTile()],
-    ]
-
-
-var player = new Player();
-world.actors = [new Magician()]
-player.actor = world.actors[0];
-player.setUpEventHandlers();
-world.player = player;
-
-world.draw(container);
-world.loop();
+for (var i = 0; i < includes.length; i++) {
+  document.write('<script type="text/javascript" src="' + includes[i] +
+                 '"></script>');
+}
+if (level) {
+  document.write('<script type="text/javascript" src="' + level + '"></script>');
+}
