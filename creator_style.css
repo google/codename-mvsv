@@ -1,0 +1,35 @@
+img.tile {
+  position: absolute;
+  border: 1px solid black;
+}
+
+img.magician {
+  position: absolute;
+  z-index: 1;
+}
+
+body {
+  background-image: url("gfx/bg_1024_768_sky.png");
+}
+
+div#world_creator {
+  position: absolute;
+  right: 50px;
+  top: 10px;
+}
+
+div#world_creator img.tile {
+  position: static;
+}
+
+.lose {
+  font-size: 60;
+  background-color: black;
+  width: 400px;
+  color: red;
+  z-index: 10;
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  padding: 1em;
+}
