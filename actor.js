@@ -69,15 +69,15 @@ Actor.prototype.tick = function(delta, world) {
 
   if (this.speed > 0 && (
       !world.tiles[Math.floor(this.x + this.width)][
-          Math.floor(this.y + this.height)].passible &&
-      !world.tiles[Math.floor(this.x + this.width)][Math.floor(this.y)].passible)) {
+          Math.floor(y + this.height)].passible &&
+      !world.tiles[Math.floor(this.x + this.width)][Math.floor(y)].passible)) {
     this.x = Math.ceil(this.x) - this.width - 0.0001;
     colided = true;
     this.speed = 0.0001;  // Keep the animation going.
   }
   if (this.speed < 0 && (
-      !world.tiles[Math.floor(this.x)][Math.floor(this.y + this.height)].passible &&
-      !world.tiles[Math.floor(this.x)][Math.floor(this.y)].passible)) {
+      !world.tiles[Math.floor(this.x)][Math.floor(y + this.height)].passible &&
+      !world.tiles[Math.floor(this.x)][Math.floor(y)].passible)) {
     this.x = Math.ceil(this.x) + 0.0001;
     colided = true;
     this.speed = -0.0001;  // Keep the animation going.
