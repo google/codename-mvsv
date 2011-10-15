@@ -36,6 +36,9 @@ World.prototype.fire = function(x, y) {
 }
 
 World.prototype.freeze = function(x, y) {
+  if (this.tiles[x][y].frozen) {
+    return;
+  }
   for (var i = Math.floor(x); i <= Math.ceil(x); i++) 
     for (var j = Math.floor(y); j <= Math.ceil(y); j++)
       if (i > 0 && i < this.tiles.length &&
@@ -47,6 +50,25 @@ World.prototype.freeze = function(x, y) {
   for (var i = 0; i < this.actors.length; i++) {
     if (this.actors[i].touch(x, y) && this.actors[i].freeze) {
       this.actors[i].freeze();
+    }
+  }
+}
+
+World.prototype.melt = function(x, y) {
+  if (!this.tiles[x][y].frozen) {
+    return;
+  }
+  for (var i = Math.floor(x); i <= Math.ceil(x); i++) 
+    for (var j = Math.floor(y); j <= Math.ceil(y); j++)
+      if (i > 0 && i < this.tiles.length &&
+          j > 0 && j < this.tiles[i].length &&
+          this.tiles[i][j].melt) {
+        this.tiles[i][j].melt();
+      }
+
+  for (var i = 0; i < this.actors.length; i++) {
+    if (this.actors[i].touch(x, y) && this.actors[i].melt) {
+      this.actors[i].melt();
     }
   }
 }

@@ -77,6 +77,7 @@ Magician.prototype.specialAbility = function(which, world) {
   switch (which) {
     case 0:
       this.fireAbility(world);
+      this.meltAbility(world);
       break;
     case 1:
       this.freezeAbility(world);
@@ -105,4 +106,15 @@ Magician.prototype.freezeAbility = function(world) {
     targetX = Math.floor(this.actor.x) - 1;
   }
   world.freeze(targetX, targetY); 
+};
+
+Magician.prototype.meltAbility = function(world) {
+  var targetX = 0;
+  var targetY = Math.floor(this.actor.y);
+  if (this.actor.direction > 0) {
+    targetX = Math.ceil(this.actor.x) + 1;
+  } else {
+    targetX = Math.floor(this.actor.x) - 1;
+  }
+  world.melt(targetX, targetY); 
 };

@@ -3,7 +3,9 @@ function GroundTile() {
 }
 
 GroundTile.prototype.draw = function(container, x, y, world) {
-  name = "inner_checkers_mid" + (Math.floor(Math.random()*1.9999)+1) + "_continuous.png";
+  // uncomment following line if you need a default graphic for debugging; otherwise redundant
+  // name = "inner_checkers_mid" + (Math.floor(Math.random()*2)+1) + "_continuous.png";
+
   if (world) {
     var leftmost= false;
     var rightmost = false;
@@ -41,7 +43,7 @@ GroundTile.prototype.draw = function(container, x, y, world) {
 	}
 	else {
 	  // middle tile of height 1
-	  name = "ground_checkers_mid" + (Math.floor(Math.random()*2.9999)+1) + ".png";
+	  name = "ground_checkers_mid" + (Math.random() < 0.05 ? "2" : Math.random() < 0.1? "3" : "1") + ".png";
 	}
       }
       else { // topmost level, with tiles continuing below
@@ -61,7 +63,7 @@ GroundTile.prototype.draw = function(container, x, y, world) {
 	}
 	else {
 	  // middle tile, continuous
-	    name = "ground_checkers_mid" + (Math.floor(Math.random()*2.9999)+1) +"_continuous.png";
+	    name = "ground_checkers_mid" + (Math.random() < 0.05 ? "2" : Math.random() < 0.1? "3" : "1") +"_continuous.png";
 	}
       }
     }
@@ -84,7 +86,7 @@ GroundTile.prototype.draw = function(container, x, y, world) {
 	}
 	else {
 	  // bottommost middle tile not at top
-	  name = "inner_checkers_mid" + (Math.floor(Math.random()*1.9999)+1) + ".png";
+          name = "inner_checkers_mid" + (Math.random() < 0.05 ? "2" : "1") + ".png";
 	}
       }
       else { // inner level, with tiles continuing below
@@ -104,7 +106,7 @@ GroundTile.prototype.draw = function(container, x, y, world) {
 	}
 	else {
 	  // middle tile, inner continuous
-	  name = "inner_checkers_mid" + (Math.floor(Math.random()*1.9999)+1) +"_continuous.png";
+	  name = "inner_checkers_mid" + (Math.random() < 0.05 ? "2" : "1") +"_continuous.png";
 	}
       }
     }

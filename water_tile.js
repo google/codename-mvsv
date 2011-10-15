@@ -1,6 +1,7 @@
 function WaterTile() {
   this.passible = true;
   this.frost_ = new Frost();
+  this.melting = false;
   this.time = Math.random();
   this.world = null;
   this.frozen = false;
@@ -10,15 +11,21 @@ function WaterTile() {
   this.leftmost = false;
   this.rightmost = false;
   this.above_fountain = false;
-  
 }
 
 WaterTile.prototype.tick = function(delta) {
   this.time += delta;
+  if (this.frost_.finished && this.frost_.freezing) {
+    this.frost_.stopFreezing();
+  }
+  if (this.frost_.finishedMelting && this.fire_.melting) {
+    this.fire_.stopMelting();
+  }
   if (!this.frozen) {
     var something = Utils.getAnimationStep(this.time, C.animStep, 5) + 1;
     this.node.src = "gfx/" + this.type + something + ".png";
-  } 
+  }
+    
   this.frost_.tick(delta, this.x, this.y, this.world);
 }
 
@@ -98,8 +105,26 @@ WaterTile.prototype.determineName = function() {
 }
 
 WaterTile.prototype.freeze = function() {
+  if (this.frozen) {
+    return;
+  }
   this.passible = false;
   this.frozen = true;
   this.node.src = "gfx/" +  this.determineName();
-  this.frost_.start();
+  this.frost_.startFreezing();
+}
+
+WaterTile.prototype.fire = function() {
+  this.melt();
+}
+
+WaterTile.prototype.melt = function() {
+  if (!this.frozen) {
+    return true;
+  }
+  this.frost_.startMelting();
+  this.frozen = false;
+  this.passible = true;
+  var something = Utils.getAnimationStep(this.time, C.animStep, 5) + 1;
+  this.node.src = "gfx/" + this.type + something + ".png";
 }
