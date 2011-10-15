@@ -3,6 +3,7 @@ function Magician() {
   this.animTime = 0;
   this.fire_ = new Fire();
   this.jumpSound = new Audio('sfx/jump.mp3');
+  this.fireSound = new Audio('sfx/fireball.mp3');
 }
 
 Magician.prototype.touch = function(x, y) {
@@ -73,14 +74,15 @@ Magician.prototype.specialAbility = function(which, world) {
 };
 
 Magician.prototype.fireAbility = function(world) {
-  var targetX = 0;
-  var targetY = Math.floor(this.actor.y);
-  if (this.actor.direction > 0) {
-    targetX = Math.ceil(this.actor.x) + 1;
-  } else {
-    targetX = Math.floor(this.actor.x) - 1;
-  }
-  world.fire(targetX, targetY); 
+  var ball = new FireBall();
+  world.actors.push(ball);
+  ball.actor.direction = this.actor.direction;
+  ball.actor.x = this.actor.x + this.actor.direction;
+  ball.actor.y = this.actor.y;
+  ball.world = world;
+  ball.accelerate(this.actor.direction);
+  ball.draw(world.container);
+  this.fireSound.play();
 };
 
 Magician.prototype.freezeAbility = function(world) {
