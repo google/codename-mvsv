@@ -30,6 +30,9 @@ Player.prototype.tick = function(delta) {
     this.jump = false;
     this.jumpReady = false;
   }
+  if (this.actor.actor.crashed) {
+    this.actor.die();
+  }
 }
 
 Player.prototype.switchCharacters = function() {

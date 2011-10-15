@@ -10,6 +10,7 @@ function Actor() {
   this.direction = 1;
   this.width = 0.999;
   this.height = 0.95;
+  this.crashed = false;
   this.hitSound = new Audio('sfx/hit.mp3');
 };
 
@@ -42,7 +43,8 @@ Actor.prototype.tick = function(delta, world) {
   var x = this.x;
   var y = this.y;
   this.x += this.speed * delta;
-  this.vspeed += this.gravity * delta; 
+  this.vspeed += this.gravity * delta;
+  fallingSpeed = Math.abs(this.vspeed);
   this.y += this.vspeed * delta;
   var colided = false;
   // Don't get out of the world.
@@ -111,7 +113,9 @@ Actor.prototype.tick = function(delta, world) {
     colided = true;
     this.speed = -0.0001;  // Keep the animation going.
   }
-
+  if (colided && fallingSpeed > C.killingFallSpeed) {
+    this.crashed = true;
+  }
   if (Math.abs(this.speed) + Math.abs(this.vspeed) < 0.1 && colided &&
       lastSpeed > 0.1 && (this.hitSound.ended || this.hitSound.paused)) {
     this.hitSound.play()
