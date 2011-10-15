@@ -47,7 +47,7 @@ Actor.prototype.tick = function(delta, world) {
   var colided = false;
   // Don't get out of the world.
   if (Math.floor(this.x + this.width) >= world.tiles.length) {
-    this.x = world.tiles.length - this.width;
+    this.x = world.tiles.length - this.width - 0.0001;
     this.speed = 0;
     colided = true;
   }
@@ -57,7 +57,7 @@ Actor.prototype.tick = function(delta, world) {
     this.speed = 0;
   }
   if (Math.floor(this.y + this.height) >= world.tiles[0].length) {
-    this.y = world.tiles[0].length - this.height;;
+    this.y = world.tiles[0].length - this.height - 0.0001;
     colided = true;
     this.vspeed = 0;
   }
@@ -67,31 +67,47 @@ Actor.prototype.tick = function(delta, world) {
     this.vspeed = 0;
   }
 
-  if (this.vspeed > 0 && (
-      !world.tiles[Math.floor(x)][Math.floor(this.y + this.height)].passible ||
-      !world.tiles[Math.floor(x + this.width)][Math.floor(this.y + this.height)].passible)) {
-    this.y = Math.ceil(y) - this.height;
-    colided = true;
-    this.vspeed = 0;
-  }
-  if (this.vspeed < 0 && (
-      !world.tiles[Math.floor(x)][Math.floor(this.y)].passible ||
-      !world.tiles[Math.floor(x + this.width)][Math.floor(this.y)].passible)) {
-    this.y = Math.ceil(this.y);
-    colided = true;
-    this.vspeed = 0;
-  }
   if (this.speed > 0 && (
-      !world.tiles[Math.floor(this.x + this.width)][Math.floor(y + this.height)].passible ||
-      !world.tiles[Math.floor(this.x + this.width)][Math.floor(y)].passible)) {
-    this.x = Math.ceil(this.x) - this.width;
+      !world.tiles[Math.floor(this.x + this.width)][
+          Math.floor(this.y + this.height)].passible &&
+      !world.tiles[Math.floor(this.x + this.width)][Math.floor(this.y)].passible)) {
+    this.x = Math.ceil(this.x) - this.width - 0.0001;
     colided = true;
     this.speed = 0.0001;  // Keep the animation going.
   }
   if (this.speed < 0 && (
-      !world.tiles[Math.floor(this.x)][Math.floor(y + this.height)].passible ||
-      !world.tiles[Math.floor(this.x)][Math.floor(y)].passible)) {
-    this.x = Math.ceil(this.x);
+      !world.tiles[Math.floor(this.x)][Math.floor(this.y + this.height)].passible &&
+      !world.tiles[Math.floor(this.x)][Math.floor(this.y)].passible)) {
+    this.x = Math.ceil(this.x) + 0.0001;
+    colided = true;
+    this.speed = -0.0001;  // Keep the animation going.
+  }
+  if (this.vspeed > 0 && (
+      !world.tiles[Math.floor(this.x)][Math.floor(this.y + this.height)].passible ||
+      !world.tiles[Math.floor(this.x + this.width)][Math.floor(this.y + this.height)].passible)) {
+    this.y = Math.ceil(this.y) - this.height - 0.0001;
+    colided = true;
+    this.vspeed = 0;
+  }
+  if (this.vspeed < 0 && (
+      !world.tiles[Math.floor(this.x)][Math.floor(this.y)].passible ||
+      !world.tiles[Math.floor(this.x + this.width)][Math.floor(this.y)].passible)) {
+    this.y = Math.ceil(this.y) + 0.0001;
+    colided = true;
+    this.vspeed = 0;
+  }
+  if (this.speed > 0 && (
+      !world.tiles[Math.floor(this.x + this.width)][
+          Math.floor(this.y + this.height)].passible &&
+      !world.tiles[Math.floor(this.x + this.width)][Math.floor(this.y)].passible)) {
+    this.x = Math.ceil(this.x) - this.width - 0.0001;
+    colided = true;
+    this.speed = 0.0001;  // Keep the animation going.
+  }
+  if (this.speed < 0 && (
+      !world.tiles[Math.floor(this.x)][Math.floor(this.y + this.height)].passible &&
+      !world.tiles[Math.floor(this.x)][Math.floor(this.y)].passible)) {
+    this.x = Math.ceil(this.x) + 0.0001;
     colided = true;
     this.speed = -0.0001;  // Keep the animation going.
   }

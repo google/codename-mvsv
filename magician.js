@@ -1,5 +1,7 @@
 function Magician() {
   this.actor = new Actor();
+  this.actor.width = 0.8;
+  this.actor.height = 0.9;
   this.animTime = 0;
   this.fire_ = new Fire();
   this.jumpSound = new Audio('sfx/jump.mp3');

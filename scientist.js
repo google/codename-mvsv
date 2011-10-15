@@ -1,6 +1,7 @@
 function Scientist() {
   this.actor = new Actor();
   this.actor.width = 0.5;
+  this.actor.height = 0.9;
   this.animTime = 0;
 
   this.fire_ = new Fire();
