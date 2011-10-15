@@ -9,6 +9,7 @@ function Player() {
   this.jump = false;
   this.left = false;
   this.right = false;
+  this.world = null;
 }
 
 Player.prototype.setUpEventHandlers = function() {
@@ -41,6 +42,10 @@ Player.prototype.switchCharacters = function() {
   }
 };
 
+Player.prototype.specialAbility = function(which) {
+  this.actor.specialAbility(which, this.world);
+};
+
 Player.prototype.keyDown = function(e) {
   e.preventDefault();
   switch (e.keyCode) {
@@ -58,6 +63,11 @@ Player.prototype.keyDown = function(e) {
       break;
     case 40:
       this.down = true;
+      break;
+    case 49:  // '1'
+    case 50:
+    case 51:
+      this.specialAbility(e.keyCode - 49);
       break;
   }
 };

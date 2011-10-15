@@ -16,10 +16,10 @@ function WorldCreator() {
 
 WorldCreator.prototype.draw = function(container) { 
  for (i = 0; i < this.tiles.length ; ++i) {
-   this.tiles[i].draw(container, 300, 50 + i*100);
+   this.tiles[i].draw(container, 1, 1, this.world);
  }
  for (var i = 0; i < this.players.length; ++i) {
-   this.players[i].draw(container, 300,  50 + + this.tiles.length*100 + i*100, world);
+   this.players[i].draw(container, 300,  50 + + this.tiles.length*100 + i*100, this.world);
  }
  if (this.scientist) {
   this.scientist.draw(container);

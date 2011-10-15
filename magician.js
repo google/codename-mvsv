@@ -50,3 +50,22 @@ Magician.prototype.jump = function() {
     this.actor.vspeed += C.jumpBoost;
   }
 };
+
+Magician.prototype.specialAbility = function(which, world) {
+  switch (which) {
+    case 0:
+      this.fireAbility(world);
+      break;
+  } 
+};
+
+Magician.prototype.fireAbility = function(world) {
+  var targetX = 0;
+  var targetY = Math.floor(this.actor.y);
+  if (this.actor.direction > 0) {
+    targetX = Math.ceil(this.actor.x) + 1;
+  } else {
+    targetX = Math.floor(this.actor.x) - 1;
+  }
+  world.fire(targetX, targetY); 
+};
