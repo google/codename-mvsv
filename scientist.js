@@ -1,5 +1,6 @@
 function Scientist() {
   this.actor = new Actor();
+  this.actor.width = 0.5;
   this.animTime = 0;
 
   this.fire_ = new Fire();
@@ -30,7 +31,7 @@ Scientist.prototype.tick = function(delta, world) {
   this.actor.tick(delta, world);
   this.fire_.tick(delta, this.actor.x, this.actor.y, world);
   this.node.style.top = this.actor.y * C.size + 'px';
-  this.node.style.left = this.actor.x * C.size + 'px';
+  this.node.style.left = this.actor.x * C.size - 8 + 'px';
   this.animTime += delta;
   if (this.actor.speed != 0) {
     var src = 'gfx/scientist_';
