@@ -1,6 +1,10 @@
 function Player() {
   this.actor = null;
 
+  this.magician = null;
+  this.scientist = null;
+  this.current = 'magician';
+
   this.jumpReady = true;
   this.jump = false;
   this.left = false;
@@ -27,8 +31,22 @@ Player.prototype.tick = function(delta) {
   }
 }
 
+Player.prototype.switchCharacters = function() {
+  if (this.current == 'magician') {
+    this.current = 'scientist';
+    this.actor = this.scientist;
+  } else {
+    this.current = 'magician';
+    this.actor = this.magician;
+  }
+};
+
 Player.prototype.keyDown = function(e) {
+  e.preventDefault();
   switch (e.keyCode) {
+    case 9:
+      this.switchCharacters();
+      break;
     case 37:
       this.left = true;
       break;
@@ -45,6 +63,7 @@ Player.prototype.keyDown = function(e) {
 };
 
 Player.prototype.keyUp = function(e) {
+  e.preventDefault();
   switch (e.keyCode) {
     case 37:
       this.left = false;
