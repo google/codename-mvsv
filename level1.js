@@ -9,13 +9,13 @@ world.tiles =
 
 
 var player = new Player();
-world.actors = [new Magician()]
+world.actors = [new Magician(), new Scientist()]
 
 world.actors[0].actor.x = 0;
 world.actors[0].actor.y = 10;
 
 
-player.actor = world.actors[0];
+player.actor = world.actors[1];
 player.setUpEventHandlers();
 world.player = player;
 
