@@ -1,6 +1,7 @@
 function Magician() {
   this.actor = new Actor();
   this.animTime = 0;
+  this.fire_ = new Fire();
 }
 
 Magician.prototype.touch = function(x, y) {
@@ -8,7 +9,7 @@ Magician.prototype.touch = function(x, y) {
 }
 
 Magician.prototype.fire = function() {
-  alert("He's dead Jim!");
+  this.fire_.start();
 }
 
 Magician.prototype.accelerate = function(x) {
@@ -17,6 +18,7 @@ Magician.prototype.accelerate = function(x) {
 
 Magician.prototype.tick = function(delta, world) {
   this.actor.tick(delta, world);
+  this.fire_.tick(delta, this.actor.x, this.actor.y, world);
   this.node.style.top = this.actor.y * C.size + 'px';
   this.node.style.left = this.actor.x * C.size + 'px';
   this.animTime += delta;
@@ -30,6 +32,10 @@ Magician.prototype.tick = function(delta, world) {
     src += Utils.getAnimationStep(this.actor.animTime, C.animStep, 2) + 1;
     src += '.png';
     this.node.src = src;
+  }
+  if (this.fire_.finished && this.fire_.burning) {
+    this.node.src = 'gfx/player_dead.png';
+    world.fail();
   }
 };
 

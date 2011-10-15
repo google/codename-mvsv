@@ -21,3 +21,14 @@ div#world_creator {
 div#world_creator img.tile {
   position: static;
 }
+
+.lose {
+  font-size: 60;
+  background-color: black;
+  width: 400px;
+  color: red;
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  padding: 1em;
+}

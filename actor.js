@@ -10,8 +10,7 @@ function Actor() {
 };
 
 Actor.prototype.touch = function(x, y) {
-  return (Math.floor(this.x) == x || Math.ceil(this.x) == x) &&
-      (Math.floor(this.y) == y || Math.ceil(this.y) == y);
+  return Math.abs(this.x - x) + Math.abs(this.y - y) < 1;
 }
 
 Actor.prototype.accelerate = function(x) {
