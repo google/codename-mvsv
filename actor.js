@@ -31,8 +31,8 @@ Actor.prototype.tick = function(delta, world) {
     this.speed = 0;
   }
   this.x += this.speed * delta;
-  this.vspeed += C.gravity; 
-  this.y += this.vspeed; 
+  this.vspeed += C.gravity * delta; 
+  this.y += this.vspeed * delta; 
   // Don't get out of the world.
   if (Math.ceil(this.x) >= world.tiles.length) {
     this.x = world.tiles.length - 1;

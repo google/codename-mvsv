@@ -3,8 +3,8 @@ C.size = 32;
 C.playerAcceleration = 50;
 C.defaultMaxSpeed = 10;
 C.defaultDrag = 25;
-C.gravity = 0.001;
-C.jumpBoost = -10;
+C.gravity = 50;
+C.jumpBoost = -30;
 
 C.maxStep = 2;
 C.animStep = 0.25;
