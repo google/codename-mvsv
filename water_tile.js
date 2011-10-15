@@ -108,6 +108,11 @@ WaterTile.prototype.freeze = function() {
   this.frost_.startFreezing();
 }
 
+WaterTile.prototype.fire = function() {
+  alert("it calls me");
+  this.melt();
+}
+
 WaterTile.prototype.melt = function() {
   if (!this.frozen) {
     return true;

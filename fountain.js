@@ -38,6 +38,10 @@ FountainTile.prototype.freeze = function() {
   this.frost_.startFreezing();
 }
 
+FountainTile.prototype.fire = function() {
+  this.melt();
+}
+
 FountainTile.prototype.melt = function() {
   if (!this.frozen) {
     return;
