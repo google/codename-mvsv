@@ -15,6 +15,10 @@ FireBall.prototype.accelerate = function(x) {
   this.actor.accelerate(x * FireBall.speed);
 };
 
+FireBall.prototype.water = function() {
+  this.world.removeActor(this);
+};
+
 FireBall.prototype.tick = function(delta) {
   this.animTime += delta;
   this.actor.tick(delta, world);
@@ -25,6 +29,10 @@ FireBall.prototype.tick = function(delta) {
   this.world.fire(this.actor.x + delta * this.actor.speed, this.actor.y)
   if (!this.actor.hitSound.paused) {
     this.world.removeActor(this);
+  }
+  var tile = world.tiles[Math.round(this.actor.x)][Math.round(this.actor.y)];
+  if (tile.actorAction) {
+    tile.actorAction(this);
   }
 };
 
