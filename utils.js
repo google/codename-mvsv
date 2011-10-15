@@ -14,3 +14,13 @@ Utils.getObjectClass = function(obj) {
 Utils.getAnimationStep = function(time, step, frames) {
   return Math.floor(time % (step * frames) / step);
 }
+
+Utils.setUpPlayer = function(player, world) {
+  player.magician = new Magician();
+  player.scientist = new Scientist();
+  world.actors.push(player.magician, player.scientist);
+  player.actor = player.magician;
+  player.setUpEventHandlers();
+
+  world.player = player;
+};
