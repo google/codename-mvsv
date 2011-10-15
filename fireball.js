@@ -4,6 +4,7 @@ function FireBall() {
   this.actor.gravity = 0;
   this.actor.drag = 0;
   this.actor.hitSound = new Audio('sfx/hit3.mp3');
+  this.sizzlingSound = new Audio('sfx/sizzling.mp3');
   this.world = null;
 }
 
@@ -17,6 +18,7 @@ FireBall.prototype.accelerate = function(x) {
 
 FireBall.prototype.water = function() {
   this.world.removeActor(this);
+  this.sizzlingSound.play();
 };
 
 FireBall.prototype.tick = function(delta) {
