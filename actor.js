@@ -5,6 +5,7 @@ function Actor() {
   this.vspeed = 0;
   this.maxSpeed = C.defaultMaxSpeed;
   this.drag = C.defaultDrag;
+  this.gravity = C.gravity;
   this.animTime = 0;
   this.direction = 1;
   this.hitSound = new Audio('sfx/hit.mp3');
@@ -37,7 +38,7 @@ Actor.prototype.tick = function(delta, world) {
   }
   var lastSpeed = Math.abs(this.speed) + Math.abs(this.vspeed);
   this.x += this.speed * delta;
-  this.vspeed += C.gravity * delta; 
+  this.vspeed += this.gravity * delta; 
   this.y += this.vspeed * delta;
   var colided = false;
   // Don't get out of the world.
