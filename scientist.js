@@ -89,5 +89,7 @@ Scientist.prototype.hackAbility = function() {
     // TODO: add doesn't work sound!
     return;
   }
+  var die_scream = new Audio('sfx/activate_terminal.mp3');
+  die_scream.play();
   this.tile.hack();
 };
