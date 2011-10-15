@@ -9,6 +9,11 @@ function Actor() {
   this.direction = 1;
 };
 
+Actor.prototype.touch = function(x, y) {
+  return (Math.floor(this.x) == x || Math.ceil(this.x) == x) &&
+      (Math.floor(this.y) == y || Math.ceil(this.y) == y);
+}
+
 Actor.prototype.accelerate = function(x) {
   this.speed += x;
   if (this.speed > this.maxSpeed) {

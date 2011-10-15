@@ -17,6 +17,19 @@ World.prototype.draw = function(container) {
   }
 }
 
+World.prototype.fire = function(x, y) {
+  if (x > 0 && x < this.tiles.length &&
+      y > 0 && y < this.tiles[x].length &&
+      this.tiles[x][y].fire) {
+    this.tiles[x][y].fire();
+  }
+  for (var i = 0; i < this.actors.length; i++) {
+    if (this.actors[i].touch(x, y) && this.actors[i].fire) {
+      this.actors[i].fire();
+    }
+  }
+}
+
 World.prototype.loop = function() {
   var now = new Date().getTime() / 1000.0;
   var delta = now - this.lastLoop;

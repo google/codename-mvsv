@@ -3,6 +3,14 @@ function Scientist() {
   this.animTime = 0;
 }
 
+Scientist.prototype.touch = function(x, y) {
+  return this.actor.touch(x, y);
+}
+
+Scientist.prototype.fire = function() {
+  alert("He's dead Jim!");
+}
+
 Scientist.prototype.accelerate = function(x) {
   this.actor.accelerate(x);
 };
