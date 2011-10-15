@@ -26,6 +26,7 @@ div#world_creator img.tile {
   background-color: black;
   width: 400px;
   color: red;
+  z-index: 10;
   position: absolute;
   top: 40%;
   left: 30%;

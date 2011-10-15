@@ -17,7 +17,9 @@ Utils.getAnimationStep = function(time, step, frames) {
 
 Utils.setUpPlayer = function(player, world) {
   player.magician = new Magician();
+  player.magician.world = world;
   player.scientist = new Scientist();
+  player.scientist.world = world;
   world.actors.push(player.magician, player.scientist);
   player.actor = player.magician;
   player.setUpEventHandlers();

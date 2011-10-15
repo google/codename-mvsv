@@ -29,6 +29,12 @@ WaterTile.prototype.tick = function(delta) {
   this.frost_.tick(delta, this.x, this.y, this.world);
 }
 
+WaterTile.prototype.actorAction = function(actor) {
+  if (actor.water) {
+    actor.water();
+  }
+};
+
 WaterTile.prototype.draw = function(container, x, y, world) {
   this.x = x;
   this.y = y;
@@ -109,7 +115,6 @@ WaterTile.prototype.freeze = function() {
 }
 
 WaterTile.prototype.fire = function() {
-  alert("it calls me");
   this.melt();
 }
 

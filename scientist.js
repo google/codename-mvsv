@@ -4,6 +4,7 @@ function Scientist() {
 
   this.fire_ = new Fire();
   this.jumpSound = new Audio('sfx/jump.mp3');
+  this.world = null;
 }
 
 Scientist.prototype.touch = function(x, y) {
@@ -12,6 +13,13 @@ Scientist.prototype.touch = function(x, y) {
 
 Scientist.prototype.fire = function() {
   this.fire_.start();
+}
+
+Scientist.prototype.water = function() {
+  if (this.fire_.burning) {
+    this.fire_.stop();
+    this.fire_ = new Fire();
+  }
 }
 
 Scientist.prototype.accelerate = function(x) {
@@ -41,6 +49,10 @@ Scientist.prototype.tick = function(delta, world) {
     die_scream.play();
     world.fail();
   }
+  this.tile = world.tiles[Math.round(this.actor.x)][Math.round(this.actor.y)];
+  if (this.tile.actorAction) {
+    this.tile.actorAction(this);
+  }
 };
 
 Scientist.prototype.draw = function(container) {
@@ -63,5 +75,17 @@ Scientist.prototype.jump = function() {
 };
 
 Scientist.prototype.specialAbility = function(which, world) {
-  alert('Not implemented.');
+  switch (which) {
+    case 0:
+      this.hackAbility();
+      break;
+  };
+};
+
+Scientist.prototype.hackAbility = function() {
+  if (!this.tile || !this.tile.hack) {
+    // TODO: add doesn't work sound!
+    return;
+  }
+  this.tile.hack();
 };

@@ -15,6 +15,13 @@ Magician.prototype.fire = function() {
   this.fire_.start();
 }
 
+Magician.prototype.water = function() {
+  if (this.fire_.burning) {
+    this.fire_.stop();
+    this.fire_ = new Fire();
+  }
+}
+
 Magician.prototype.accelerate = function(x) {
   this.actor.accelerate(x);
 };
@@ -41,6 +48,10 @@ Magician.prototype.tick = function(delta, world) {
     var die_scream = new Audio('sfx/dying_scream.mp3');
     die_scream.play();
     world.fail();
+  }
+  this.tile = world.tiles[Math.round(this.actor.x)][Math.round(this.actor.y)];
+  if (this.tile.actorAction) {
+    this.tile.actorAction(this);
   }
 };
 

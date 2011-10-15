@@ -4,6 +4,7 @@ function FireBall() {
   this.actor.gravity = 0;
   this.actor.drag = 0;
   this.actor.hitSound = new Audio('sfx/hit3.mp3');
+  this.sizzlingSound = new Audio('sfx/sizzling.mp3');
   this.world = null;
 }
 
@@ -13,6 +14,11 @@ FireBall.prototype.touch = function() {
 
 FireBall.prototype.accelerate = function(x) {
   this.actor.accelerate(x * FireBall.speed);
+};
+
+FireBall.prototype.water = function() {
+  this.world.removeActor(this);
+  this.sizzlingSound.play();
 };
 
 FireBall.prototype.tick = function(delta) {
@@ -25,6 +31,10 @@ FireBall.prototype.tick = function(delta) {
   this.world.fire(this.actor.x + delta * this.actor.speed, this.actor.y)
   if (!this.actor.hitSound.paused) {
     this.world.removeActor(this);
+  }
+  var tile = world.tiles[Math.round(this.actor.x)][Math.round(this.actor.y)];
+  if (tile.actorAction) {
+    tile.actorAction(this);
   }
 };
 
