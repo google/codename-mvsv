@@ -14,9 +14,9 @@ function WaterTile() {
 }
 
 WaterTile.prototype.tick = function(delta) {
+  this.time += delta;
   if (!this.frozen) {
     var something = Utils.getAnimationStep(this.time, C.animStep, 5) + 1;
-    this.time += delta;
     this.node.src = "gfx/" + this.type + something + ".png";
   } 
   this.frost_.tick(delta, this.x, this.y, this.world);
