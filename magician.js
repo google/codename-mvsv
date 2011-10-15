@@ -4,6 +4,7 @@ function Magician() {
   this.fire_ = new Fire();
   this.jumpSound = new Audio('sfx/jump.mp3');
   this.fireSound = new Audio('sfx/fireball.mp3');
+  this.snowSound = new Audio('throw_snowball.mp3');
 }
 
 Magician.prototype.touch = function(x, y) {
@@ -69,10 +70,23 @@ Magician.prototype.specialAbility = function(which, world) {
       this.meltAbility(world);
       break;
     case 1:
+      this.snowAbility(world);
       this.freezeAbility(world);
       break;
   } 
 };
+
+Magician.prototype.snowAbility = function(world) {
+    var ball = new SnowBall();
+    world.actors.push(ball);
+    ball.actor.direction = this.actor.direction;
+    ball.actor.x = this.actor.x + this.actor.direction;
+    ball.actor.y = this.actor.y;
+    ball.world = world;
+    ball.accelerate(this.actor.direction);
+    ball.draw(world.container);
+    this.snowSound.play();
+}
 
 Magician.prototype.fireAbility = function(world) {
   var ball = new FireBall();
