@@ -20,8 +20,11 @@ World.prototype.draw = function(container) {
 World.prototype.loop = function() {
   var now = new Date().getTime() / 1000.0;
   var delta = now - this.lastLoop;
-  if (delta > C.maxStep) delta = C.maxStep;
   this.lastLoop = now;
+  if (delta > C.maxStep) {
+    setTimeout(this.loop.bind(this));
+    return;
+  }
 
   this.player.tick(delta);
   for (var i = 0; i < this.actors.length; i++) {
