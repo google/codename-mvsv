@@ -35,7 +35,8 @@ Player.prototype.tick = function(delta) {
   }
 
   var status = document.getElementById('status');
-  status.innerHTML = "Magician: 1=Fireballs (&infin;) 2=Snowballs (&infin;) <br> Scientist: 1=Hacking (&infin;) 2=Bombs (" + this.scientist.dynamite + ")";
+  if (status) 
+    status.innerHTML = "Magician: 1=Fireballs (&infin;) 2=Snowballs (&infin;) <br> Scientist: 1=Hacking (&infin;) 2=Bombs (" + this.scientist.dynamite + ")";
 }
 
 Player.prototype.switchCharacters = function() {
