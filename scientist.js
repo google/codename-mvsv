@@ -12,8 +12,8 @@ function Scientist() {
   this.world = null;
 }
 
-Scientist.prototype.touch = function(x, y) {
-  return this.actor.touch(x, y);
+Scientist.prototype.touch = function(x, y, x1, y1) {
+  return this.actor.touch(x, y, x1, y1);
 }
 
 Scientist.prototype.fire = function() {
@@ -38,6 +38,8 @@ Scientist.prototype.die = function() {
     die_scream.play();
     world.fail();
 };
+
+Scientist.prototype.freeze = function() {}  // Just so that the snoball hits.
 
 Scientist.prototype.accelerate = function(x) {
   this.actor.accelerate(x);

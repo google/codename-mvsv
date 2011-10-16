@@ -43,10 +43,14 @@ World.prototype.fire = function(x, y) {
   return used;
 }
 
-World.prototype.freeze = function(x, y) {
+World.prototype.freeze = function(x, y, x1, y1) {
   var used = false;
-  for (var i = Math.floor(x); i <= Math.ceil(x); i++) 
-    for (var j = Math.floor(y); j <= Math.ceil(y); j++)
+  if (!x1 || !y1) {
+    x1 = Math.ceil(x);
+    y1 = Math.ceil(y);
+  }
+  for (var i = Math.floor(x); i <= Math.floor(x1); i++) 
+    for (var j = Math.floor(y); j <= Math.floor(y1); j++)
       if (i > 0 && i < this.tiles.length &&
           j > 0 && j < this.tiles[i].length &&
           this.tiles[i][j].freeze) {
@@ -55,7 +59,7 @@ World.prototype.freeze = function(x, y) {
       }
 
   for (var i = 0; i < this.actors.length; i++) {
-    if (this.actors[i].touch(x, y) && this.actors[i].freeze) {
+    if (this.actors[i].touch(x, y, x1, y1) && this.actors[i].freeze) {
       this.actors[i].freeze();
       used = true;
     }
