@@ -38,9 +38,9 @@ Player.prototype.tick = function(delta) {
   if (status) {
     var status_msg = "";
     if (this.current == 'magician') {
-	status_msg += "<b>Magician</b>: 1=Fireballs (&infin;) 2=Snowballs (&infin;) <br> Scientist: 1=Hacking (&infin;) 2=Bombs (";
+	status_msg += "<b>Who?Dinnny?</b>: 1=Fireballs (&infin;) 2=Snowballs (&infin;) <br> Zweistein: 1=Hacking (&infin;) 2=Bombs (";
     } else {
-	status_msg += "Magician: 1=Fireballs (&infin;) 2=Snowballs (&infin;) <br> <b>Scientist</b>: 1=Hacking (&infin;) 2=Bombs (";
+	status_msg += "Who?Dinnny?: 1=Fireballs (&infin;) 2=Snowballs (&infin;) <br> <b>Zweistein</b>: 1=Hacking (&infin;) 2=Bombs (";
     }
     status.innerHTML = status_msg + this.scientist.dynamite + ")";
   }
