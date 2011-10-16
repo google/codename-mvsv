@@ -4,11 +4,16 @@ function WoodenTile() {
   this.world = null;
   this.fire_ = new Fire(); 
   this.fire_.useFlames = true;
+  this.fireBgMusic = new Audio("sfx/flames.mp3");
   this.topmost = false;
 }
 
 WoodenTile.prototype.fire = function() {
   this.fire_.start();
+  if (!this.fire_.finished){
+    this.fireBgMusic.play();
+    this.fireBgMusic.loop = true;
+  }
 }
 
 WoodenTile.prototype.freeze = function() {
@@ -37,6 +42,7 @@ WoodenTile.prototype.draw = function(container, x, y, world) {
 WoodenTile.prototype.tick = function(delta) {
   this.fire_.tick(delta, this.x, this.y, this.world);
   if (this.fire_.finished && this.fire_.burning) {
+    this.fireBgMusic.pause();
     this.fire_.stop();
     this.passible = true;
     if (this.node.src.indexOf('top') == -1) {
