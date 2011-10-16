@@ -8,7 +8,7 @@ function World() {
   this.winSound = new Audio('sfx/exit_level.mp3');
   this.bgMusic = new Audio('sfx/TheValley.mp3');
   this.bgMusic.play();
-  this.bgMusic.lopp = true;
+  this.bgMusic.loop = true;
 };
 
 World.prototype.draw = function(container) {
