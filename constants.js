@@ -14,4 +14,4 @@ C.width = 32
 C.height = 24
 
 C.neighbours = [[-1,0],[1,0],[0,1],[0,-1],[1,1],[1,-1],[-1,-1],[-1,1]];
-C.killingFallSpeed = 20;
+C.killingFallSpeed = 23.3;
