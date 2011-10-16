@@ -28,7 +28,9 @@ FireBall.prototype.tick = function(delta, world) {
   this.node.style.left = this.actor.x * C.size + 'px';
   this.node.src = 'gfx/firestream' + (
       Utils.getAnimationStep(this.animTime, FireBall.animStep, 4) + 1) + '.png';
-  this.world.fire(this.actor.x + delta * this.actor.speed, this.actor.y)
+  var used = this.world.fire(this.actor.x + delta * this.actor.speed,
+                             this.actor.y)
+  if (used) this.actor.hitSound.play();
   if (!this.actor.hitSound.paused) {
     this.world.removeActor(this);
   }
