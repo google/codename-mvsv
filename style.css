@@ -23,7 +23,7 @@ div#world_creator img.tile {
 
 .lose {
   font-size: 34pt;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.2);
   width: 400px;
   color: red;
   z-index: 10;
@@ -31,6 +31,9 @@ div#world_creator img.tile {
   top: 40%;
   left: 30%;
   padding: 1em;
+  -webkit-border-radius: 10px;
+  box-shadow: 0 0 10px white, 0 0 5px black;
+  text-shadow: white 0 0 5px;
 }
 
 .win {
