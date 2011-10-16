@@ -6,6 +6,9 @@ function World() {
   this.lastLoop = 0;
   this.container = null;
   this.winSound = new Audio('sfx/exit_level.mp3');
+  this.bgMusic = new Audio('sfx/TheValley.mp3');
+  this.bgMusic.play();
+  this.bgMusic.lopp = true;
 };
 
 World.prototype.draw = function(container) {
@@ -21,35 +24,43 @@ World.prototype.draw = function(container) {
 }
 
 World.prototype.fire = function(x, y) {
+  var used = false;
   for (var i = Math.floor(x); i <= Math.ceil(x); i++) 
     for (var j = Math.floor(y); j <= Math.ceil(y); j++)
       if (i > 0 && i < this.tiles.length &&
           j > 0 && j < this.tiles[i].length &&
           this.tiles[i][j].fire) {
         this.tiles[i][j].fire();
+        used = true;
       }
 
   for (var i = 0; i < this.actors.length; i++) {
     if (this.actors[i].touch(x, y) && this.actors[i].fire) {
       this.actors[i].fire();
+      used = true;
     }
   }
+  return used;
 }
 
 World.prototype.freeze = function(x, y) {
+  var used = false;
   for (var i = Math.floor(x); i <= Math.ceil(x); i++) 
     for (var j = Math.floor(y); j <= Math.ceil(y); j++)
       if (i > 0 && i < this.tiles.length &&
           j > 0 && j < this.tiles[i].length &&
           this.tiles[i][j].freeze) {
         this.tiles[i][j].freeze();
+        used = true;
       }
 
   for (var i = 0; i < this.actors.length; i++) {
     if (this.actors[i].touch(x, y) && this.actors[i].freeze) {
       this.actors[i].freeze();
+      used = true;
     }
   }
+  return used;
 }
 
 World.prototype.melt = function(x, y) {
