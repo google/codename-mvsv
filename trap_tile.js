@@ -16,7 +16,10 @@ TrapTile.prototype.tick = function(delta) {
     this.fire_.stopMelting();
   }
   if (!this.frozen) {
-    var something = Utils.getAnimationStep(this.time, C.animStep, 8) + 1;
+    var something = Utils.getAnimationStep(this.time, C.animStep, 15) + 1;
+    if (something > 8) {
+      something = 16 - something;
+    }
     this.node.src = "gfx/spike" + something + ".png";
   } else {
     this.node.src = "gfx/spike-frozen.png";
@@ -60,6 +63,5 @@ TrapTile.prototype.melt = function() {
   this.frost_.startMelting();
   this.frozen = false;
   this.passible = true;
-  var something = Utils.getAnimationStep(this.time, C.animStep, 5) + 1;
   this.node.src = "gfx/spike1.png";
 }
