@@ -24,8 +24,8 @@ SnowBall.prototype.tick = function(delta) {
   this.node.style.left = this.actor.x * C.size - 10 + Math.random()*3 - 1.5 + 'px';
   this.node.src = 'gfx/snowball.png';
   var used = this.world.freeze(
-    this.actor.x, this.actor.y,
-    this.actor.x + this.actor.width, this.actor.y + this.actor.height);
+    this.actor.x + delta * this.actor.speed, this.actor.y,
+    this.actor.x + delta * this.actor.speed + this.actor.width, this.actor.y + this.actor.height);
   if (used) this.actor.hitSound.play();
   if (!this.actor.hitSound.paused) {
     this.world.removeActor(this);
