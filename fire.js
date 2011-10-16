@@ -51,7 +51,7 @@ Fire.prototype.tick = function(delta, x, y, world) {
   this.fireNode.style.left = x * C.size + 'px';
 }
 
-Fire.timeToSpreadUp = 3;
-Fire.timeToSpreadSide = 5;
-Fire.timeToBurn = 20;
+Fire.timeToSpreadUp = 0.51;
+Fire.timeToSpreadSide = 1.35;
+Fire.timeToBurn = 10;
 Fire.animStep = 0.047;
