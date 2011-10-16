@@ -7,6 +7,7 @@ function Scientist() {
 
   this.fire_ = new Fire();
   this.jumpSound = new Audio('sfx/jump.mp3');
+  this.hackingSound = new Audio('sfx/type_on_terminal.mp3');
   this.world = null;
 }
 
@@ -47,6 +48,7 @@ Scientist.prototype.accelerate = function(x) {
 };
 
 Scientist.prototype.tick = function(delta, world) {
+  if (!this.hackingSound.paused && !this.hackingSound.ended) return;
   this.actor.tick(delta, world);
   this.fire_.tick(delta, this.actor.x, this.actor.y, world);
   this.node.style.top = this.actor.y * C.size + 'px';
@@ -107,8 +109,8 @@ Scientist.prototype.hackAbility = function() {
     // TODO: add doesn't work sound!
     return;
   }
-  var die_scream = new Audio('sfx/activate_terminal.mp3');
-  die_scream.play();
+  this.hackingSound.play();
+  this.node.src = 'gfx/scientist_hacking.png';
   this.tile.hack();
 };
 
