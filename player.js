@@ -35,7 +35,15 @@ Player.prototype.tick = function(delta) {
   }
 
   var status = document.getElementById('status');
-  status.innerHTML = "Magician: 1=Fireballs (&infin;) 2=Snowballs (&infin;) <br> Scientist: 1=Hacking (&infin;) 2=Bombs (" + this.scientist.dynamite + ")";
+  if (status) {
+    var status_msg = "";
+    if (this.current == 'magician') {
+	status_msg += "<b>Who?Dinnny?</b>: 1=Fireballs (&infin;) 2=Snowballs (&infin;) <br> Zweistein: 1=Hacking (&infin;) 2=Bombs (";
+    } else {
+	status_msg += "Who?Dinnny?: 1=Fireballs (&infin;) 2=Snowballs (&infin;) <br> <b>Zweistein</b>: 1=Hacking (&infin;) 2=Bombs (";
+    }
+    status.innerHTML = status_msg + this.scientist.dynamite + ")";
+  }
 }
 
 Player.prototype.switchCharacters = function() {
