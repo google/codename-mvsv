@@ -27,8 +27,8 @@ World.prototype.fire = function(x, y) {
   var used = false;
   for (var i = Math.floor(x); i <= Math.ceil(x); i++) 
     for (var j = Math.floor(y); j <= Math.ceil(y); j++)
-      if (i > 0 && i < this.tiles.length &&
-          j > 0 && j < this.tiles[i].length &&
+      if (i >= 0 && i < this.tiles.length &&
+          j >= 0 && j < this.tiles[i].length &&
           this.tiles[i][j].fire) {
         this.tiles[i][j].fire();
         used = true;
