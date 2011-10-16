@@ -5,6 +5,7 @@ function World() {
   this.player = null;
   this.lastLoop = 0;
   this.container = null;
+  this.winSound = new Audio('sfx/exit_level.mp3');
 };
 
 World.prototype.draw = function(container) {
@@ -101,10 +102,14 @@ World.prototype.fail = function() {
 
 World.prototype.win = function() {
   this.shouldStop = true;
+  this.winSound.play();
   var winDiv = document.createElement('div');
   winDiv.className = 'win';
   winDiv.innerHTML = "The Science of Magic <br> and <br>The Magic of Science<br> " +
       "congratulate <br> you for your achievement!";
+  var nextLink = document.getElementById('next').innerHTML;
+  winDiv.innerHTML += '<a href="' + nextLink + '">Next</a>';
+  
   document.body.appendChild(winDiv);
 }
 

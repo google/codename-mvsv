@@ -48,3 +48,7 @@ div#world_creator img.tile {
   box-shadow: 0 0 10px white, 0 0 5px black;
   text-shadow: white 0 0 5px;
 }
+
+#next {
+  display: none;
+}

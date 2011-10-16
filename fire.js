@@ -14,8 +14,10 @@ Fire.prototype.start = function() {
 
 Fire.prototype.stop = function() {
   this.burning = false;
-  if (this.fireNode)
+  if (this.fireNode) {
     this.fireNode.parentElement.removeChild(this.fireNode);
+    delete this.fireNode;
+  }
 }
 
 Fire.prototype.tick = function(delta, x, y, world) {
