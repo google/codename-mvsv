@@ -3,6 +3,7 @@ function Scientist() {
   this.actor.width = 0.5;
   this.actor.height = 0.9;
   this.animTime = 0;
+  this.dead = 0;
   this.dynamite = 0;
   this.fire_ = new Fire();
   this.jumpSound = new Audio('sfx/jump.mp3');
@@ -31,6 +32,7 @@ Scientist.prototype.water = function() {
 }
 
 Scientist.prototype.die = function() {
+    this.dead = 1;
     this.node.src = 'gfx/player_dead.png';
     var die_scream = new Audio('sfx/dying_scream.mp3');
     die_scream.play();
@@ -42,6 +44,7 @@ Scientist.prototype.accelerate = function(x) {
 };
 
 Scientist.prototype.tick = function(delta, world) {
+  if (this.dead) return;
   if (!this.hackingSound.paused && !this.hackingSound.ended) return;
   this.actor.tick(delta, world);
   this.fire_.tick(delta, this.actor.x, this.actor.y, world);
