@@ -10,7 +10,6 @@ world.tiles =
 var player = new Player();
 Utils.setUpPlayer(player, world);
 world.draw(container);
-world.loop();
 player.magician.actor.y = 2;
 player.scientist.actor.y = 2;
 player.magician.actor.x = 11;
@@ -18,3 +17,5 @@ player.scientist.actor.x = 12;
 player.scientist.dynamite = 2;
 
 C.jumpBoost = -14;
+
+setTimeout(world.loop.bind(world), 1000);
