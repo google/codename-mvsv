@@ -11,7 +11,6 @@ Utils.setUpPlayer(player, world);
 player.magician.actor.y = 14;
 player.magician.actor.x = 21;
 player.scientist.actor.y = 14;
-player.scientist.dynamite = 1;
 world.draw(container);
 world.loop();
 C.jumpBoost = -14;
