@@ -4,7 +4,7 @@
 <body>
 <div id="world">
 </div>
-<div id="next">outro1.html</div>
+<div id="next">outro.html</div>
 <script> var level = 'level_bridge.js'; </script>
 <script type="text/javascript" src="main.js"></script>
 </body>
