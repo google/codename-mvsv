@@ -3,7 +3,7 @@ function Scientist() {
   this.actor.width = 0.5;
   this.actor.height = 0.9;
   this.animTime = 0;
-  this.dynamite = 1;
+  this.dynamite = 0;
   this.fire_ = new Fire();
   this.jumpSound = new Audio('sfx/jump.mp3');
   this.hackingSound = new Audio('sfx/type_on_terminal.mp3');
