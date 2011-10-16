@@ -6,6 +6,9 @@ function World() {
   this.lastLoop = 0;
   this.container = null;
   this.winSound = new Audio('sfx/exit_level.mp3');
+  this.bgMusic = new Audio('sfx/TheValley.mp3');
+  this.bgMusic.play();
+  this.bgMusic.lopp = true;
 };
 
 World.prototype.draw = function(container) {
