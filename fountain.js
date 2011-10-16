@@ -5,6 +5,9 @@ function FountainTile() {
   this.x = 0;
   this.y = 0;
   this.world = null;
+  this.bgMusic = new Audio('sfx/water.mp3');
+  this.bgMusic.play();
+  this.bgMusic.loop = true;
 }
 
 FountainTile.prototype.draw = function(container, x, y, world) {
@@ -33,6 +36,7 @@ FountainTile.prototype.freeze = function() {
   if (this.frozen) {
     return;
   }
+  this.bgMusic.pause();
   this.frozen = true;
   this.passible = false;
   this.node.src = "gfx/fountain_frozen.png";
@@ -47,6 +51,8 @@ FountainTile.prototype.melt = function() {
   if (!this.frozen) {
     return;
   }
+  this.bgMusic.play();
+  this.bgMusic.loop = true;
   this.frozen = false;
   this.passible = true;
   this.frost_.startMelting();
