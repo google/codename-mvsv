@@ -5,10 +5,14 @@ function Frost() {
   this.finished = false;
   this.finishedMelting = false;
   this.melting = false;
+  this.freezingSound = new Audio('sfx/freeze.mp3');
+  this.meltingSound = new Audio('sfx/melting.mp3');
 }
 
 Frost.prototype.startFreezing = function() {
   if (!this.finishedFreezing) {
+    if (!this.freezing) 
+      this.freezingSound.play();
     this.freezing = true;
     this.frozen = 0;
     this.melting = false;
@@ -17,6 +21,8 @@ Frost.prototype.startFreezing = function() {
 
 Frost.prototype.startMelting = function() {
   if (!this.finishedMelting) {
+    if (!this.melting)
+      this.meltingSound.play();
     this.freezing = false;
     this.molten = 0;
     this.melting = true;
@@ -75,8 +81,8 @@ Frost.prototype.tick = function(delta, x, y, world) {
   }
 }
 
-Frost.timeToSpreadUp = 3;
-Frost.timeToSpreadSide = 3;
-Frost.timeToSpreadDown = 3;
+Frost.timeToSpreadUp = 0.37;
+Frost.timeToSpreadSide = 0.41;
+Frost.timeToSpreadDown = 0.23;
 Frost.timeToFreeze = 0;
 Frost.timeActive = 3.1;
