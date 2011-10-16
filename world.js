@@ -107,7 +107,7 @@ World.prototype.fail = function() {
   this.shouldStop = true;
   var loseDiv = document.createElement('div');
   loseDiv.className = 'lose';
-  loseDiv.innerHTML = "He's dead Jim!";
+  loseDiv.innerHTML = "He's dead Jim! <a href=\"javascript:history.go(0)\">Retry</a>";
   document.body.appendChild(loseDiv);
 };
 
