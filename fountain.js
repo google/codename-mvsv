@@ -35,7 +35,7 @@ FountainTile.prototype.freeze = function() {
   if (this.frozen) {
     return;
   }
-  this.bgMusic.pause();
+  FountainTile.bgMusic.pause();
   this.frozen = true;
   this.passible = false;
   this.node.src = "gfx/fountain_frozen.png";
