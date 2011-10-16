@@ -33,6 +33,9 @@ Player.prototype.tick = function(delta) {
   if (this.actor.actor.crashed) {
     this.actor.die();
   }
+
+  var status = document.getElementById('status');
+  status.innerHTML = "Magician: 1=Fireballs (&infin); 2=Snowballs (&infin;) <br> Scientist: 1=Hacking (&infin;) 2=Bombs (" + this.scientist.dynamite + ")";
 }
 
 Player.prototype.switchCharacters = function() {

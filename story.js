@@ -1,28 +1,18 @@
 
 function World() {
-  this.tiles = [];
-  this.actors = [];
-  this.player = null;
   this.lastLoop = 0;
   this.container = null;
   this.winSound = new Audio('sfx/exit_level.mp3');
   this.bgMusic = new Audio('sfx/TheValley.mp3');
   this.bgMusic.play();
-  this.bgMusic.loop = true;
+  this.bgMusic.lopp = true;
 };
 
 World.prototype.draw = function(container) {
   this.container = container;
   for (var i = 0; i < this.tiles.length; i++) {
     for (var j = 0; j < this.tiles[i].length; j++) {
-      this.tiles[i][j].draw(container, i, j, this);
-    }
-  }
-  for (var i = 0; i < this.actors.length; i++) {
-    this.actors[i].draw(container);
-  }
-}
-
+      this.tiles[i][j].draw(container, i, j, this
 World.prototype.fire = function(x, y, x1, y1) {
   var used = false;
   if (!x1 || !y1) {
