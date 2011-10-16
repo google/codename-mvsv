@@ -2,7 +2,7 @@
 var world_creator = new WorldCreator();
 creator_container = document.getElementById("world_creator")
 container = document.getElementById("world")
-world_creator.tiles = [new WoodenTile(), new StoneTile(), new GroundTile(), new TerminalTile(), new WaterTile(), new FountainTile(), new ExitTile(), new FreeTile()]
+world_creator.tiles = [new WoodenTile(), new StoneTile(), new GroundTile(), new TerminalTile(), new WaterTile(), new FountainTile(), new ExitTile(), new TrapTile(), new FreeTile()]
 world_creator.players = [new MagicianTile(), new ScientistTile()];
 world_creator.draw(creator_container);
 world_creator.drawWorld(container);
