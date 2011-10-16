@@ -35,7 +35,7 @@ FountainTile.prototype.freeze = function() {
   if (this.frozen) {
     return;
   }
-  this.bgMusic.pause();
+  FountainTile.bgMusic.pause();
   this.frozen = true;
   this.passible = false;
   this.node.src = "gfx/fountain_frozen.png";
@@ -50,8 +50,7 @@ FountainTile.prototype.melt = function() {
   if (!this.frozen) {
     return;
   }
-  this.bgMusic.play();
-  this.bgMusic.loop = true;
+  FountainTile.bgMusic.play();
   this.frozen = false;
   this.passible = true;
   this.frost_.startMelting();
