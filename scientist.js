@@ -22,6 +22,12 @@ Scientist.prototype.destroy = function() {
   this.die();
 }
 
+Scientist.prototype.freeze = function() {
+  if (this.fire_.burning) {
+    this.water();
+  }
+}
+
 Scientist.prototype.water = function() {
   if (this.fire_.burning) {
     this.fire_.stop();

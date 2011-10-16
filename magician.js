@@ -17,6 +17,12 @@ Magician.prototype.fire = function() {
   this.fire_.start();
 }
 
+Magician.prototype.freeze = function() {
+  if (this.fire_.burning) {
+    this.water();
+  }
+}
+
 Magician.prototype.water = function() {
   if (this.fire_.burning) {
     this.fire_.stop();
