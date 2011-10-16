@@ -23,6 +23,7 @@ var player = new Player();
 Utils.setUpPlayer(player, world);
 player.magician.actor.y = 4;
 player.scientist.actor.y = 4;
+player.scientist.dynamite = 1;
 world.draw(container);
 world.loop();
 C.jumpBoost = -14;
