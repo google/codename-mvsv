@@ -38,6 +38,8 @@ for(var i = 0;i<world.tiles.length;++i) {
 	for (var idx = 0; idx < world.actors.length; ++idx) {
 	  world.actors[idx].gravity = 55;
 	}
+	player.scientist.actor.gravity = 55;
+	player.magician.actor.gravity = 55;
 	added_tiles = [[22,5],[23,5],[20,7],[19,7], [18,7]];
 	for (var index = 0; index < added_tiles.length;++index) {
 	  var l = added_tiles[index][0];
