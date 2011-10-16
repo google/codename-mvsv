@@ -9,6 +9,12 @@ function World() {
   this.bgMusic = new Audio('sfx/TheValley.mp3');
   this.bgMusic.play();
   this.bgMusic.lopp = true;
+
+  var statusDiv = document.createElement('div');
+  statusDiv.className = 'status';
+  statusDiv.id = 'status';
+  statusDiv.innerHTML = "";
+  document.body.appendChild(statusDiv);
 };
 
 World.prototype.draw = function(container) {

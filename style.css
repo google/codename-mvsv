@@ -55,3 +55,18 @@ div#world_creator img.tile {
 #next {
   display: none;
 }
+
+.status {
+  font-size: 12pt;
+  background-color: rgba(0, 0, 0, 0.2);  
+  width: 320px;
+  color: black;
+  z-index: 10;
+  position: absolute;
+  top: 0%;
+  left: 60%;
+  padding: 1em;
+  -webkit-border-radius: 10px;
+  box-shadow: 0 0 10px white, 0 0 5px black;
+  text-shadow: white 0 0 5px;
+}
