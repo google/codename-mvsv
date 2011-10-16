@@ -4,7 +4,6 @@ function Scientist() {
   this.actor.height = 0.9;
   this.animTime = 0;
   this.dynamite = 1;
-
   this.fire_ = new Fire();
   this.jumpSound = new Audio('sfx/jump.mp3');
   this.hackingSound = new Audio('sfx/type_on_terminal.mp3');
@@ -22,12 +21,6 @@ Scientist.prototype.fire = function() {
 
 Scientist.prototype.destroy = function() {
   this.die();
-}
-
-Scientist.prototype.freeze = function() {
-  if (this.fire_.burning) {
-    this.water();
-  }
 }
 
 Scientist.prototype.water = function() {
@@ -120,6 +113,7 @@ Scientist.prototype.demolitionAbility = function() {
     this.noSound.play();
     return;
   }
+  if (!this.dynamite || this.dynamite < 1) return;
   this.dynamite--;
   var dynamite = new Dynamite();
   dynamite.actor.x = this.actor.x;
