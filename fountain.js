@@ -50,8 +50,7 @@ FountainTile.prototype.melt = function() {
   if (!this.frozen) {
     return;
   }
-  this.bgMusic.play();
-  this.bgMusic.loop = true;
+  FountainTile.bgMusic.play();
   this.frozen = false;
   this.passible = true;
   this.frost_.startMelting();
