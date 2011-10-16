@@ -29,4 +29,4 @@ player.magician.actor.x = 20;
 player.scientist.actor.y = 14;
 world.draw(container);
 world.loop();
-C.jumpBoost = -14;
+C.jumpBoost = -12;
