@@ -11,6 +11,12 @@ WoodenTile.prototype.fire = function() {
   this.fire_.start();
 }
 
+WoodenTile.prototype.freeze = function() {
+  if (this.fire_.burning) {
+   this.fire_.stop(); 
+  }
+}
+
 WoodenTile.prototype.draw = function(container, x, y, world) {
   var name = "wall_wood_full.png";
   this.topmost = false;
