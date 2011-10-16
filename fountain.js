@@ -5,11 +5,9 @@ function FountainTile() {
   this.x = 0;
   this.y = 0;
   this.world = null;
-  this.bgMusic = new Audio('sfx/water.mp3');
-  this.bgMusic.play();
-  this.bgMusic.loop = true;
+  FountainTile.bgMusic.play();
 }
-
+FountainTile.bgMusic = new Audio('sfx/water.mp3');
 FountainTile.prototype.draw = function(container, x, y, world) {
   this.x = x;
   this.y = y;
