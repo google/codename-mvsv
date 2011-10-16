@@ -24,20 +24,26 @@ Dynamite.prototype.tick = function(delta, world) {
     this.beepSound.play();
   }
   this.animTime += delta;
-  this.actor.tick(delta, world);
-  this.node.style.top = this.actor.y * C.size - 20 + 'px';
-  this.node.style.left = this.actor.x * C.size - 20 + 'px';
-  if (this.animTime > this.detonationTime) {
+  if (this.animTime < this.detonationTime) {
+    this.actor.tick(delta, world);
+    this.node.style.top = this.actor.y * C.size - 20 + 'px';
+    this.node.style.left = this.actor.x * C.size - 20 + 'px';
+  } else {
     if (this.explosionSound.paused) {
       this.explosionSound.play();
+      world.destroy(this.actor.x, this.actor.y);
       this.beepSound.pause();
+      this.node.style.left = (this.actor.x + this.actor.width / 2 - 1.5) * C.size +'px';
+      this.node.style.top = (this.actor.y + this.actor.height - 3) * C.size + 'px';
+      this.node.style.width = 3 * C.size + 'px';
+      this.node.style.height = 3 * C.size + 'px';
     }
     this.node.src = 'gfx/explosion' +
-       (Utils.getAnimationStep(this.animTime - this.detonationTime, Dynamite.explosionAnimStep, 8)
+       (Utils.getAnimationStep(this.animTime - this.detonationTime,
+                               Dynamite.explosionAnimStep, 8)
        + 1) + '.png';
     if (this.explosionSound.ended) {
       world.removeActor(this);
-      world.destroy(this.actor.x, this.actor.y);
     }
   }
 }
