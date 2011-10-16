@@ -14,7 +14,17 @@ function Actor() {
   this.hitSound = new Audio('sfx/hit.mp3');
 };
 
-Actor.prototype.touch = function(x, y) {
+Actor.prototype.touch = function(x, y, x1, y1) {
+  if (!!x1 && !!y1) {
+    return (((this.x < x && x < this.x + this.width) ||
+             (this.x < x1 && x1 < this.x + this.width) ||
+             (x < this.x && this.x < x1) ||
+             (x < this.x +this.width && this.x + this.width < x1)) &&
+            ((this.y < y && y < this.y + this.height) ||
+             (this.y < y1 && y1 < this.y + this.height) ||
+             (y < this.y && this.y < y1) ||
+             (y < this.y +this.height && this.y + this.height < y1)));
+  }
   return Math.abs(this.x - x) + Math.abs(this.y - y) < 1;
 }
 

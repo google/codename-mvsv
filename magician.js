@@ -9,8 +9,8 @@ function Magician() {
   this.snowSound = new Audio('throw_snowball.mp3');
 }
 
-Magician.prototype.touch = function(x, y) {
-  return this.actor.touch(x, y);
+Magician.prototype.touch = function(x, y, x1, y1) {
+  return this.actor.touch(x, y, x1, y1);
 }
 
 Magician.prototype.fire = function() {
@@ -106,8 +106,10 @@ Magician.prototype.snowAbility = function(world) {
     var ball = new SnowBall();
     world.actors.push(ball);
     ball.actor.direction = this.actor.direction;
-    ball.actor.x = this.actor.x + this.actor.direction;
-    ball.actor.y = this.actor.y;
+    ball.actor.x = this.actor.x + this.actor.width / 2.0 +
+        (1.1 * this.actor.direction * this.actor.width / 2.0) +
+        (this.actor.direction > 0 ? 0 : - ball.actor.width * 1.1); 
+    ball.actor.y = this.actor.y + this.actor.height / 2 - ball.actor.height / 2;
     ball.world = world;
     ball.accelerate(this.actor.direction);
     ball.draw(world.container);
